@@ -1,0 +1,39 @@
+#日志配置文件位置
+logging:
+  config: classpath:logback-boot.xml
+#web端口
+server:
+  port: 8989
+  #context-path: /service
+  jsp-servlet:
+    init-parameters:
+      development: true
+thymeleaf:
+  prefix: classpath:/  #prefix：指定模板所在的目录
+  check-template-location: true  #check-tempate-location: 检查模板路径是否存在
+  cache: false  #cache: 是否缓存，开发模式下设置为false，避免改了模板还要重启服务器，线上设置为true，可以提高性能。
+  suffix:  .jsp
+  #encoding: UTF-8
+  #content-type: text/html
+  mode: HTML5
+spring:
+  mvc:
+    view:
+      prefix: /
+      suffix: .jsp
+  application:
+   # name: fdm_inooc
+  redis:
+    host: 127.0.0.1
+    port: 6379
+  datasource:
+    type: org.apache.commons.dbcp.BasicDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/fdm
+    username: root
+    password: 123456
+
+mybatis:
+  mapper-locations: classpath:com/baidu/mapper/*Mapper.xml
+  type-aliases-package: com.baidu.entity
+

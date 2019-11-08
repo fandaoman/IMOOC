@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baidu.dao.UserDao">
+
+
+    <!--登录-->
+    <select id="findByUsername" parameterType="String" resultType="User">
+
+        select id,username,realname,password,sex,age,tel,addressId,createTime,delFlag
+        from fdm_user
+        where username=#{username}
+
+    </select>
+    <!--用户信息注册-->
+    <insert id="add" parameterType="User">
+        insert into fdm_user values(#{id},#{username}, #{password},#{tel},#{addressId},#{realname},#{sex},#{age},#{createTime},#{delFlag})
+    </insert>
+
+
+    <!--检测是否注册时登录名冲突-->
+    <select id="FindAll" parameterType="String" resultType="User">
+
+        select id,username,realname,password,sex,age,tel,addressId,createTime,delFlag
+        from fdm_user
+    </select>
+</mapper>
