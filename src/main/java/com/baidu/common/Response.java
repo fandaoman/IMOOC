@@ -10,6 +10,7 @@ import java.io.Serializable;
  * @Ver 1.0
  * */
 public class Response implements Serializable {
+
     private static final String OK = "ok";
     private static final String ERROR = "error";
     //请求本身相关内容

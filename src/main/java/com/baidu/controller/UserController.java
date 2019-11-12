@@ -6,11 +6,8 @@ import com.baidu.service.UserService;
 import com.baidu.utils.MD5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -44,7 +41,7 @@ public class UserController {
             response=new Response().failure("用户名或密码错误");
         }
 
-        return null;
+        return response;
     }
 
     //用户信息的注册

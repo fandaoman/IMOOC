@@ -20,7 +20,9 @@
     <script src="../js/user/index.js"></script>
     <%--引入layer样式--%>
     <script src="../layer/layer.js"></script>
+    <%--<script src="../js/user/user.js"></script>--%>
     <script type="text/javascript">
+
         $(function() {
             $("#btn").click(function (){
                 //获取用户名和密码
@@ -39,17 +41,17 @@
                         data: {"username":username,"password":password},
                         type: "post",
                         success:function(data){
+                            alert("77777"+data);
                             if(data){
-                                location.href="${pageContext.request.contextPath}/error.jsp";
+                                location.href="${pageContext.request.contextPath}/house/index.jsp";
                             }else{
-                                layer.alert(data.message,{icon: 5});
-                                //location.href="${pageContext.request.contextPath}/error.jsp";
+                                //layer.alert(data.message,{icon: 5});
+                                location.href="${pageContext.request.contextPath}/error.jsp";
                             }
                         }
                     })
             });
         });
-
 
 
     </script>
