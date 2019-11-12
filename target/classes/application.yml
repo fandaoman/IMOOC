@@ -20,7 +20,7 @@ spring:
   mvc:
     view:
       prefix: /
-      suffix: .jsp
+      suffix: .html
   application:
    # name: fdm_inooc
   redis:

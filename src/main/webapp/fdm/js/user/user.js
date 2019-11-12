@@ -22,7 +22,7 @@ $(function() {
             success:function(data){
                 if(data){
                     alert("7777");
-                    location.href="../error.jsp";
+                    location.href="../../../error.html";
                 }else{
                     alert("9999");
                     layer.alert(data.message,{icon: 5});

@@ -65,4 +65,23 @@ public class UserController {
         List<User> users = userService.FindAll();
         return users;
     }
+
+
+    @RequestMapping("/upload")
+    public String upload(String username,String password){
+        if("".equals(username) || "".equals(password)){
+            return "false";
+        }else{
+            User user = userService.findByUsername(username);
+            //反向解析MD5密码
+            if(user!=null && !password.isEmpty()){
+                if(user.getPassword().equals(MD5Utils.getMD5(password))){
+
+                    return "success";
+                }
+            }
+
+        }
+        return null;
+    }
 }
