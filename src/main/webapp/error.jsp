@@ -33,7 +33,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 				</ul>
 			</div>
 			
-		<a href="fdm/user/login.html">go back</a>
+		<a href="login.jsp">go back</a>
 	</div>
 </div>
 <div class="footer-w3l">

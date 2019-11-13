@@ -1,38 +1,50 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: fandaoman
+  Date: 2019/10/28
+  Time: 13:47
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>东风速递</title>
+    <title>91大申网</title>
 
-    <link rel="stylesheet" href="../css/user/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/user/style.css">
+    <link rel="stylesheet" href="fdm/css/user/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="fdm/css/user/style.css">
 
-    <script src="../js/user/jquery-3.4.1.js"></script>
-    <script src="../js/user/jquery-3.4.1.min.js"></script>
-    <script src="../js/user/index.js"></script>
-    <script src="../layer/layer.js"></script>
+    <script src="fdm/js/user/jquery-3.4.1.js"></script>
+    <script src="fdm/js/user/jquery-3.4.1.min.js"></script>
+    <script src="fdm/js/user/index.js"></script>
+    <script src="fdm/layer/layer.js"></script>
     <script type="text/javascript">
         $(function() {
             $("#btn").click(function (){
                 //获取用户名和密码
                 var username =$("#name").val();
                 var password =$("#pass").val();
-                $.ajax({
-                    url: "${pageContext.request.contextPath}/user/upload",
-                    datatype: "json",
-                    contentType: "application/json",
-                    async: false, //请求是否异步，默认为异步
-                    data: {"username":username,"password":password},
-                    type: "post",
-                    success:function(data){
-                        if(data != "" && data == "success"){
-                            window.location.href="${pageContext.request.contextPath}/fdm/house/index.html";
-                        }else{
-                            //layer.alert(data.message,{icon: 5});
-                            window.location.href="${pageContext.request.contextPath}/error.html";
+                if(username.trim().length<=0 || password.trim().length<=0){
+                    layer.alert("用户名或密码为空",{icon: 5});
+                }else{
+                    $.ajax({
+                        url: "${pageContext.request.contextPath}/user/login",
+                        datatype: "json",
+                        async: false, //请求是否异步，默认为异步
+                        data: {"username":username,"password":password},
+                        type: "post",
+                        success:function(data){
+                            if(data.status){
+                                window.location.href="${pageContext.request.contextPath}/index.jsp";
+                            }else{
+                                layer.alert(data.msg,{icon: 5});
+                                $("#pass").test("");
+                            }
                         }
-                    }
-                })
+                    })
+                }
+
             });
         });
 
@@ -42,7 +54,7 @@
 <body>
 
 <div class="materialContainer">
-    <form mothod="post"  >
+
         <div class="box">
             <div class="title">登录</div>
             <div class="input">
@@ -64,7 +76,6 @@
             </div>
             <a href="javascript:" class="pass-forgot">忘记密码？</a>
         </div>
-    </form>
 
 
     <form method="post" action="/user/redister" id="redister">

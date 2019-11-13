@@ -1,6 +1,7 @@
 package com.baidu.controller;
 
 import com.baidu.common.Response;
+import com.baidu.common.Result;
 import com.baidu.entity.User;
 import com.baidu.service.UserService;
 import com.baidu.utils.MD5Utils;
@@ -25,23 +26,23 @@ public class UserController {
     //用户登录
 
     @RequestMapping(value = "/login")@ResponseBody
-    public Response userLogin(String username, String password){
-        Response response = null;
+    public Result userLogin(String username, String password){
+        Result result=new Result();
         if("".equals(username) || "".equals(password)){
-            response=new Response().failure("用户名或密码不能为空");
+
+           return result.failure(false,"用户名或密码不能为空");
         }else{
             User user = userService.findByUsername(username);
             //反向解析MD5密码
             if(user!=null && !password.isEmpty()){
                 if(user.getPassword().equals(MD5Utils.getMD5(password))){
-                    response=new Response().success(true);
-                    return response;
-                }
-            }
-            response=new Response().failure("用户名或密码错误");
-        }
 
-        return response;
+                    return result.success(true);
+                }
+                return result.failure(false,"用户名或密码错误");
+            }
+        }
+        return result;
     }
 
     //用户信息的注册
@@ -64,24 +65,5 @@ public class UserController {
     public List<User> findAll(){
         List<User> users = userService.FindAll();
         return users;
-    }
-
-
-    @RequestMapping("/upload")
-    public String upload(String username,String password){
-        if("".equals(username) || "".equals(password)){
-            return "false";
-        }else{
-            User user = userService.findByUsername(username);
-            //反向解析MD5密码
-            if(user!=null && !password.isEmpty()){
-                if(user.getPassword().equals(MD5Utils.getMD5(password))){
-
-                    return "success";
-                }
-            }
-
-        }
-        return null;
     }
 }
