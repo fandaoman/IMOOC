@@ -1,28 +1,5 @@
 $(function() {
 
-
-      /*登录*/
-      /*$("#btn").click(function (){
-         console.log("888888888");
-         //获取用户名和密码
-         var username =$("#name").val();
-         var password =$("#pass").val();
-         console.log("username"+username);
-         $.ajax({
-            url: "/user/login",
-            datatype: "json",
-            async: true, //请求是否异步，默认为异步
-            data: {"username":username,"password":password},
-            type: "post",
-            success:function(data){
-               console.log("yes");
-            },
-            error:function(data){
-               console.log("no");
-            }
-         })
-      });*/
-
    $(".input input").focus(function() {
 
       $(this).parent(".input").each(function() {
