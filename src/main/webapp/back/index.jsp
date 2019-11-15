@@ -26,6 +26,14 @@
     <script type="text/javascript" src="js/bootstrap-select.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        $(function () {
+
+        });
+
+
+
+    </script>
 </head>
 
 <body class="flat-blue sidebar-collapse">
@@ -179,15 +187,16 @@
                                 </li>
                             </ul>
                         </li>
+                        <%--用户信息展示模块--%>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Emily Hart <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Emily Hart  ${realname}<span class="caret"></span></a>
                             <ul class="dropdown-menu user-info">
                                 <li class="dropdown-title-bar">
                                     <img src="images/profile.jpg" class="profile-img">
                                 </li>
                                 <li>
                                     <div class="navbar-login">
-                                        <h4 class="user-name">Emily Hart</h4>
+                                        <h4 class="user-name" id="realname">Emily Hart</h4>
                                         <p>emily_hart@email.com</p>
                                         <div class="btn-group margin-bottom-2x" role="group">
                                             <button type="button" class="btn btn-default"><i class="fa fa-user"></i> Profile</button>
