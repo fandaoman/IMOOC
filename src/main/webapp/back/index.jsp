@@ -26,9 +26,18 @@
     <script type="text/javascript" src="js/bootstrap-select.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="../fdm/layer/layer.js"></script>
     <script type="text/javascript">
         $(function () {
-
+            $("#edit").click(function (){
+                layer.open({
+                    type: 1,
+                    title: ["编辑信息",'font-size:16px'],
+                    area: ['1018px','500px'],
+                    /*offset: '10px',*/
+                    conyent: $("EDITUSER") //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
+                });
+            });
         });
 
 
@@ -93,7 +102,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="register.html">
+                        <a href="register.jsp">
                             <div>
                                 <i class="menu-icon fa fa-pencil-square-o"></i>
                                 <span class="menu-sub-title">Register</span>
@@ -199,8 +208,8 @@
                                         <h4 class="user-name" id="realname">Emily Hart</h4>
                                         <p>emily_hart@email.com</p>
                                         <div class="btn-group margin-bottom-2x" role="group">
-                                            <button type="button" class="btn btn-default"><i class="fa fa-user"></i> Profile</button>
-                                            <button type="button" class="btn btn-default"><i class="fa fa-sign-out"></i> Logout</button>
+                                            <button type="button" class="btn btn-default" id="edit"><i class="fa fa-user" ></i> Profile</button>
+                                            <button type="button" class="btn btn-default" id="logout"><i class="fa fa-sign-out"></i> Logout</button>
                                         </div>
                                     </div>
                                 </li>
@@ -443,5 +452,10 @@
             <span><i class="fa fa-copyright"></i> Tui2Tone Labs, 2015 / More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></span>
     </footer>
 </body>
+<div id="EDITUSER" >
+    <span>这是编辑框</span>
+
+</div>
+
 
 </html>

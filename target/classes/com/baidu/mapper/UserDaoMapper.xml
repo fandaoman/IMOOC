@@ -6,21 +6,22 @@
     <!--登录-->
     <select id="findByUsername" parameterType="String" resultType="User">
 
-        select id,username,realname,password,sex,age,tel,addressId,createTime,delFlag
+        select id,username,realname,password,sex,age,tel,addressId,createTime,delFlag,email
         from fdm_user
         where username=#{username}
 
     </select>
     <!--用户信息注册-->
-    <insert id="add" parameterType="User">
-        insert into fdm_user values(#{id},#{username}, #{password},#{tel},#{addressId},#{realname},#{sex},#{age},#{createTime},#{delFlag})
+    <insert id="add" parameterType="com.baidu.entity.User">
+        insert into fdm_user(id,username,realname,age,sex,password,tel,addressId,createTime,delFlag,email)
+        values(#{id},#{username},#{realname},#{age},#{sex}, #{password},#{tel},#{addressId},#{createTime},#{delFlag},#{email})
     </insert>
 
 
     <!--检测是否注册时登录名冲突-->
     <select id="FindAll" parameterType="String" resultType="User">
 
-        select id,username,realname,password,sex,age,tel,addressId,createTime,delFlag
+        select id,username,realname,password,sex,age,tel,addressId,createTime,delFlag,email
         from fdm_user
     </select>
 </mapper>

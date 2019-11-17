@@ -28,6 +28,7 @@ public class User {
     //MD5加密后的密码
     private String password;
 
+
     //用户手机号
     private String tel;
 
@@ -39,6 +40,8 @@ public class User {
 
     //删除标识 0:启用  1：逻辑删除
     private String delFlag;
+    //用户邮箱
+    private String email;
 
     public String getId() {
         return id;
@@ -120,19 +123,11 @@ public class User {
         this.delFlag = delFlag;
     }
 
-    public User() {
+    public String getEmail() {
+        return email;
     }
 
-    public User(String id, String username, String realname, Integer age, String sex, String password, String tel, String addressId, Date createTime, String delFlag) {
-        this.id = id;
-        this.username = username;
-        this.realname = realname;
-        this.age = age;
-        this.sex = sex;
-        this.password = password;
-        this.tel = tel;
-        this.addressId = addressId;
-        this.createTime = createTime;
-        this.delFlag = delFlag;
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

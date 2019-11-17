@@ -60,9 +60,6 @@ public class UserServiceImpl implements UserService {
         //关联的地址ID暂时为空
         user.setAddressId(null);
         user.setCreateTime(new Date());
-
-        //这一部分造假数据
-        user.setRealname("范道满");
         user.setSex("0");
         user.setAge(18);
         user.setTel("18500054926");

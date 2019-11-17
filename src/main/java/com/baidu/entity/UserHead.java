@@ -1,5 +1,7 @@
 package com.baidu.entity;
 
+import java.util.Date;
+
 /*
  * @Auther fandaoman
  * @date 2019/11/14 15:46
@@ -19,6 +21,17 @@ public class UserHead {
 
     //利用标志0：启用 2：弃用
     private String delFlag;
+
+    //上传日期
+    private Date createTime;
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
     public String getId() {
         return id;

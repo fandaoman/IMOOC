@@ -11,6 +11,7 @@ import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +26,7 @@ import java.util.List;
  * @Ver 1.0
  * */
 @RequestMapping("/user")
-@Controller
+@RestController
 public class UserController {
 
     @Autowired
@@ -57,12 +58,22 @@ public class UserController {
     }
 
     //用户信息的注册
-    @RequestMapping("/redister")
-    public void userRegister(String username,String password){
+    @RequestMapping("/register")
+    public Result userRegister(String username,String password,String email,String realname){
         User user = new User();
-        user.setUsername(username);
-        user.setPassword(password);
-        userService.add(user);
+        Result result = new Result();
+        if (username.isEmpty() || password.isEmpty() || email.isEmpty() || realname.isEmpty()){
+            result.failure(false,"注册信息有误");
+        }else{
+            user.setUsername(username);
+            user.setEmail(email);
+            user.setRealname(realname);
+            user.setPassword(password);
+            userService.add(user);
+            result.success(true);
+        }
+
+        return result;
     }
 
     //用户信息修改

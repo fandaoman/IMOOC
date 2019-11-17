@@ -1,3 +1,5 @@
+
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 
@@ -17,6 +19,7 @@
 
     <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../fdm/layer/layer.js"></script>
 </head>
 
 <body>
@@ -34,32 +37,31 @@
                                         Create Success. Please wait for loading.
                                     </div>
                 <div class="box">
-                <form id="login-form">
+
 
                     <div class="control">
-                        <div class="label">Firstname</div>
-                        <input type="text" class="form-control" value="Charuwit" />
+                        <div class="label">昵称</div>
+                        <input type="text" class="form-control" id="username" />
                     </div>
                     <div class="control">
-                        <div class="label">Lastname</div>
-                        <input type="text" class="form-control" value="Nodthaisong" />
+                        <div class="label">姓名</div>
+                        <input type="text" class="form-control" id="realname" />
                     </div>
                     <div class="control">
-                        <div class="label">Email Address</div>
-                        <input type="text" class="form-control" value="admin@gmail.com" />
+                        <div class="label">邮箱</div>
+                        <input type="text" class="form-control" id="email" />
                     </div>
                     <div class="control">
-                        <div class="label">Password</div>
-                        <input type="password" class="form-control" value="123456" />
+                        <div class="label">密码</div>
+                        <input type="password" class="form-control" id="password" />
                     </div>
                     <div class="control">
-                        <div class="label">Confirm Password</div>
-                        <input type="password" class="form-control" value="123456" />
+                        <div class="label">确认密码</div>
+                        <input type="password" class="form-control" id="againPwd" />
                     </div>
                     <div class="login-button">
-                        <input type="submit" class="btn btn-orange" value="Register"></button>
+                        <input type="submit" class="btn btn-orange" id="register" value="Register"></button>
                     </div>
-                </form>
                 </div>
                 <div class="info-box">
                    <span class="text-left"><a href="login.jsp">Already have account. Log in.</a></span>
@@ -69,17 +71,32 @@
     </div>
     <script type="text/javascript">
         $(function() {
-            $("#login-form").submit(function() {
-                $("#login-progress").removeClass("hidden");
+            $("#register").click(function (){
+                //获取表单值
+                var username=$("#username").val();
+                var password=$("#password").val();
+                var realname=$("#realname").val();
+                var email=$("#email").val();
+                var againpwd=$("#againPwd").val();
+                //首先确认两次密码是否输入一致
+                if (password==againpwd){
+                    $.ajax({
+                        url:"${pageContext.request.contextPath}/user/register",
+                        datatype: "json",
+                        data:{"username":username,"password":password,"email":email,"realname":realname},
+                        type:"post",
+                        success:function (data) {
+                            if(data.status){
+                                window.location.href="${pageContext.request.contextPath}/back/login.jsp";
+                            }else{
+                                layer.alert(data.msg,{icon: 5});
+                            }
+                        }
+                    });
+                }else{
+                    layer.alert("密码输入不一致，请确认密码",{icon:5});
+                }
 
-                setTimeout(function(){
-                    $("#login-progress").addClass("hidden");
-                    $("#login-message").removeClass("hidden");
-                    setTimeout(function(){
-                        window.location.assign("index.html")
-                    },1000);
-                },1000);
-                return false;
             });
         });
     </script>

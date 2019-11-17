@@ -39,7 +39,6 @@
                     data: {"username":username,"password":password},
                     type: "post",
                     success:function(data){
-                        console.log("data"+data.status);
                         if(data.status){
                             window.location.href="${pageContext.request.contextPath}/back/index.jsp";
                         }else{
@@ -83,7 +82,7 @@
                         </div>
                 </div>
                 <div class="info-box">
-                   <span class="text-left"><a href="register.html">Create new account</a></span>
+                   <span class="text-left"><a href="register.jsp">Create new account</a></span>
                    <span class="text-right"><a href="#">Forgot password?</a></span>
                    <div class="clear-both"></div>
                 </div>

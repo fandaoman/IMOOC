@@ -6,7 +6,7 @@
 
     <select id="add" parameterType="String" resultType="UserHead">
 
-        insert into user_poto values (#{id},#{userId},#{head_sculpture_id},#{path},#{delFlag})
+        insert into user_poto values (#{id},#{userId},#{head_sculpture_id},#{path},#{delFlag},#{createTime})
 
     </select>
 
@@ -22,7 +22,7 @@
 
     <select id="findOne" parameterType="String" resultType="UserHead">
 
-        select id,userId,head_sculpture_id,path,delFlag
+        select id,userId,head_sculpture_id,path,delFlag,createTime
         from user_poto where userId=#{userId}
     </select>
 </mapper>

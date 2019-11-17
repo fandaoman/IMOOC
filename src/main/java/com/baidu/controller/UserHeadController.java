@@ -4,6 +4,8 @@ import com.baidu.common.Result;
 import com.baidu.entity.UserHead;
 import com.baidu.service.UserHeadService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletException;
@@ -13,16 +15,45 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /*
  * @Auther fandaoman
  * @date 2019/11/15 17:15
  * @Ver 1.0
  * */
+@Controller
+@RequestMapping("/userHead")
 public class UserHeadController {
     @Autowired
     private UserHeadService userHeadService;
 
+    private SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
+    @RequestMapping("/add")
+    public String add(HttpServletResponse response,HttpServletRequest request,MultipartFile fileName)throws IOException{
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=utf-8");
+        UserHead userHead = new UserHead();
+        //根据相对路径获取绝对路径
+        String realPath = request.getSession().getServletContext().getRealPath("photos");
+        //获取文件名
+        String realname = fileName.getOriginalFilename();
+        //从session取到当前登录用户的id
+        HttpSession session = request.getSession();
+        String userId = (String) session.getAttribute("userId");
+        userHead.setUserId(userId);
+        //将得到的真实名称赋值给数据库中的路径信息
+        userHead.setPath("/photos/"+realname);
+        //记录此图片的id
+        userHead.setHeadSculptureId(fileName+sdf.format(new Date()));
+        //调用业务层方法保存图片
+        userHeadService.add(userHead);
+        //上传文件
+        fileName.transferTo(new File(realPath,fileName.getOriginalFilename()));
+        return null;
+    }
 
     //头像的上传
     public Result inPoto(HttpServletRequest request,
