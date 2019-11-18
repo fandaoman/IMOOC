@@ -39,13 +39,16 @@
                     data: {"username":username,"password":password},
                     type: "post",
                     success:function(data){
+                        console.log("data.msg"+data.msg);
+                        console.log("data.status"+data.status);
                         if(data.status){
                             window.location.href="${pageContext.request.contextPath}/back/index.jsp";
                         }else{
-                            layer.alert(data.msg,{icon: 5});
+                            layer.alert("<span style=\"color: #0c0c0c\">"+data.msg+"</span>",{icon: 5});
                         }
                     }
                 })
+                return false;
             }
 
         });

@@ -39,6 +39,8 @@ public class UserController {
         Result result=new Result();
         if("".equals(username) || "".equals(password)){
 
+           /* result.setStatus(false);
+            result.setMsg("用户名或密码不能为空");*/
            return result.failure(false,"用户名或密码不能为空");
         }else{
             User user = userService.findByUsername(username);
@@ -47,8 +49,7 @@ public class UserController {
                 if(user.getPassword().equals(MD5Utils.getMD5(password))){
                     //将用户信息储存到session中
                     HttpSession session = request.getSession();
-                    session.setAttribute("realname",user.getRealname());
-                    session.setAttribute("userId",user.getId());
+                    session.setAttribute("user",user);
                     return result.success(true);
                 }
                 return result.failure(false,"用户名或密码错误");

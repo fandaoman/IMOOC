@@ -1,5 +1,6 @@
 package com.baidu.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /*
@@ -8,7 +9,7 @@ import java.util.Date;
  * @Ver 1.0
  * @用于存储用户信息
  * */
-public class User {
+public class User implements Serializable {
 
     //用户ID标识
     private String id;

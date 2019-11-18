@@ -1,6 +1,7 @@
 package com.baidu.controller;
 
 import com.baidu.common.Result;
+import com.baidu.entity.User;
 import com.baidu.entity.UserHead;
 import com.baidu.service.UserHeadService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,8 +62,8 @@ public class UserHeadController {
         UserHead userHead = new UserHead();
         //从session取到当前登录用户的id
         HttpSession session = request.getSession();
-        String userId = (String) session.getAttribute("userId");
-        userHead.setUserId(userId);
+        User user = (User) session.getAttribute("user");
+        userHead.setUserId(user.getId());
 
         //图片的上传
         /*

@@ -1,5 +1,4 @@
-<%@ page import="java.io.BufferedReader" %>
-<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 
@@ -35,7 +34,7 @@
                     title: ["编辑信息",'font-size:16px'],
                     area: ['1018px','500px'],
                     /*offset: '10px',*/
-                    conyent: $("EDITUSER") //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
+                    content:  $("#EDITUSER")//捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
                 });
             });
         });
@@ -198,7 +197,7 @@
                         </li>
                         <%--用户信息展示模块--%>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Emily Hart  ${realname}<span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Emily Hart  ${user.realname}<span class="caret"></span></a>
                             <ul class="dropdown-menu user-info">
                                 <li class="dropdown-title-bar">
                                     <img src="images/profile.jpg" class="profile-img">
@@ -449,13 +448,42 @@
     </div>
 
     <footer class="footer">
-            <span><i class="fa fa-copyright"></i> Tui2Tone Labs, 2015 / More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></span>
+            <span><i class="fa fa-copyright"></i> Tui2Tone Labs, 2015 / More Templates <a href="http://www.91.com/" target="_blank" title="91之家">91之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></span>
     </footer>
-</body>
-<div id="EDITUSER" >
-    <span>这是编辑框</span>
 
-</div>
+    <div class="content details-div" id="EDITUSER" style="display: none;position: absolute;">
+        <div class="container-fluid" >
+            <table class="table-data details-tables" style="width: 1350px;margin-left: -15px;" id="detailsMsg">
+                <tr>
+                    <td>22222</td>
+                    <td>22222</td>
+                    <td>22222</td>
+                </tr>
+                <tr>
+                    <td>22222</td>
+                    <td>22222</td>
+                    <td>22222</td>
+                </tr>
+                <tr>
+                    <td>22222</td>
+                    <td>22222</td>
+                    <td>22222</td>
+                </tr>
+                <tr>
+                    <td>22222</td>
+                    <td>22222</td>
+                    <td>22222</td>
+                </tr>
+                <tr>
+                    <td>22222</td>
+                    <td>22222</td>
+                    <td>22222</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+
 
 
 </html>

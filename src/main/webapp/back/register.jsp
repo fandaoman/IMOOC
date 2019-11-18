@@ -89,12 +89,12 @@
                             if(data.status){
                                 window.location.href="${pageContext.request.contextPath}/back/login.jsp";
                             }else{
-                                layer.alert(data.msg,{icon: 5});
+                                layer.alert("<span style='color: #0c0c0c'>+data.msg+</span>",{icon: 5});
                             }
                         }
                     });
                 }else{
-                    layer.alert("密码输入不一致，请确认密码",{icon:5});
+                    layer.alert("<span style='color: #0c0c0c'>"+"密码输入不一致，请确认密码"+"</span>",{icon:5});
                 }
 
             });
