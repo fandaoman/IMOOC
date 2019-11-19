@@ -18,7 +18,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /*
  * @Auther fandaoman
@@ -35,7 +37,7 @@ public class UserController {
 
     @RequestMapping(value = "/login")@ResponseBody
     public Result userLogin(String username, String password,
-                            HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
+                            HttpServletRequest request) throws ServletException,IOException {
         Result result=new Result();
         if("".equals(username) || "".equals(password)){
 
@@ -88,5 +90,22 @@ public class UserController {
     public List<User> findAll(){
         List<User> users = userService.FindAll();
         return users;
+    }
+
+    @RequestMapping("/findOne")
+    public Map<Object,Object> findOne(HttpServletRequest request){
+        Map<Object, Object> map = new HashMap<>();
+        Result result = new Result();
+        User admin =(User) request.getAttribute("user");
+        if (admin==null){
+            result.failure(false,"登录失效，请重新登录");
+            map.put("result",result);
+        }else{
+            User user = userService.findOne(admin.getId());
+
+        }
+
+
+        return map;
     }
 }

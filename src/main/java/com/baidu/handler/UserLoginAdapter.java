@@ -60,6 +60,7 @@ public class UserLoginAdapter implements WebMvcConfigurer {
         registry.addInterceptor(userLoginInterceptor).addPathPatterns("/**")
                 .excludePathPatterns("/back/css/**","/back/js/**","/back/images/**")
                 .excludePathPatterns("/back/login.jsp")//排除登录页面
+                .excludePathPatterns("user/login")//排除登录controller，失效
                 ;
     }
 

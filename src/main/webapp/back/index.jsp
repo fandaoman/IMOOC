@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="css/select2.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/theme.css">
+    <link rel="stylesheet" type="text/css" href="css/edit.css">
 
     <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -25,23 +26,40 @@
     <script type="text/javascript" src="js/bootstrap-select.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
+
+    <%--头像上传js--%>
+    <script type="text/javascript" src="js/upload.js"></script>
     <script type="text/javascript" src="../fdm/layer/layer.js"></script>
     <script type="text/javascript">
         $(function () {
             $("#edit").click(function (){
-                layer.open({
-                    type: 1,
-                    title: ["编辑信息",'font-size:16px'],
-                    area: ['1018px','500px'],
-                    /*offset: '10px',*/
-                    content:  $("#EDITUSER")//捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
-                });
+                var dragImgUpload = new DragImgUpload("#drop_area",{
+                    callback:function (files) {
+                        //回调函数，可以传递给后台等等
+                        var file = files[0];
+                        console.log(file.name);
+                    }
+                })
+                //点击编辑信息时，先判断当前存储在session中的数据是否失效，若失效则重新登陆
+                var ss="22";
+                if(ss==null  || ss=="" ){
+                    layer.alert("登录失效，请重新登录",{icon:5});
+                    window.location.href="${pageContext.request.contextPath}/back/login.jsp";
+                }else{
+                    layer.open({
+                        type: 1,
+                        title: ["编辑信息",'font-size:16px'],
+                        area: ['700px','560px'],
+                        btn: ["确定","取消"],
+                        content:  $("#EDITUSER")//捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
+                    });
+                }
+
+
             });
         });
-
-
-
     </script>
+
 </head>
 
 <body class="flat-blue sidebar-collapse">
@@ -452,38 +470,90 @@
     </footer>
 
     <div class="content details-div" id="EDITUSER" style="display: none;position: absolute;">
-        <div class="container-fluid" >
-            <table class="table-data details-tables" style="width: 1350px;margin-left: -15px;" id="detailsMsg">
-                <tr>
-                    <td>22222</td>
-                    <td>22222</td>
-                    <td>22222</td>
-                </tr>
-                <tr>
-                    <td>22222</td>
-                    <td>22222</td>
-                    <td>22222</td>
-                </tr>
-                <tr>
-                    <td>22222</td>
-                    <td>22222</td>
-                    <td>22222</td>
-                </tr>
-                <tr>
-                    <td>22222</td>
-                    <td>22222</td>
-                    <td>22222</td>
-                </tr>
-                <tr>
-                    <td>22222</td>
-                    <td>22222</td>
-                    <td>22222</td>
-                </tr>
-            </table>
+
+
+        <div style="width: 100%;height: 100%;float: left;">
+            <div id="drop_area"></div>
+            <div class="div_f">
+                <div class="div_col" id="me1">
+                    <div class="div_c_l"><span> 姓名：</span>
+                    </div>
+                    <div class="div_c_r"><input type="text" style="width:calc(100% - 16px);" name="name" id="name" onkeydown="" value="${user.realname}">
+                        <span style="float: right;margin-top: -30px;background:#fff" id="tish"></span></input>
+                    </div>
+                </div>
+                <div style="clear:both"></div>
+            </div>
+            <div class="div_f">
+                <div class="div_col" id="me2">
+                    <div class="div_c_l"><span>昵称：</span>
+                    </div>
+                    <div class="div_c_r"><input type="text" style="width:calc(100% - 16px);"  name="username" id="username" onkeydown="" value="${user.username}" >
+                        <span style="float: right;margin-top: -30px;background:#fff" id="ts"></span></input>
+                    </div>
+                </div>
+                <div style="clear:both"></div>
+            </div>
+            <div class="div_f">
+                <div class="div_col" id="me3">
+                    <div class="div_c_l"><span style="width:70px;">邮箱：</span>
+                    </div>
+                    <div class="div_c_r"><input type="text" style="width:calc(100% - 16px);" name="email" id="email" onkeydown=""  value="${user.email}" >
+                        <span style="float: right;margin-top: -30px;background:#fff" id="tishi"></span></input>
+                    </div>
+                </div>
+                <div style="clear:both"></div>
+            </div>
+            <div class="div_f">
+                <div class="div_col" id="me4">
+                    <div class="div_c_l"><span style="width:70px;">手机号码：</span>
+                    </div>
+                    <div class="div_c_r"><input type="tel" style="width:calc(100% - 16px);" id="phone" name="phone" onkeydown="" id="phone" value="${user.tel}">
+                        <span style="float: right;margin-top: -30px;background:#fff" id="tss"></span>
+                    </div>
+                </div>
+                <div style="clear:both"></div>
+            </div>
+
+            <div class="div_f">
+                <div class="div_col" id="me5">
+                    <div class="div_c_l"><span style="width:70px;">年龄：</span>
+                    </div>
+                    <div class="div_c_r"><input type="tel" style="width:calc(100% - 16px);" id="age" name="age" onkeydown=""  value="${user.age}">
+                        <span style="float: right;margin-top: -30px;background:#fff" id="tsi"></span>
+                    </div>
+                </div>
+                <div style="clear:both"></div>
+            </div>
+            <div class="div_f">
+                <div class="div_col" id="me6">
+                    <div class="div_c_l"><span>性别：</span>
+                    </div>
+                    <div class="div_c_r" style="padding: 0;">
+                        <div style="margin-left: 28px;" class="inp_radio">
+                            <div class="checkboxforget1">
+                                <input type="radio" id="Remember1" name="sex" id="sex1" value="0" checked />
+                                <label for="Remember1"></label>
+                            </div>
+                            男
+                        </div>
+                        <div style="margin-left: 8px;" class="inp_radio">
+                            <div class="checkboxforget1">
+                                <input type="radio" id="Remember2" name="sex" id="sex2" value="1" />
+                                <label for="Remember2"></label>
+                            </div>
+                            女
+                        </div>
+                    </div>
+                </div>
+                <div style="clear:both"></div>
+            </div>
+
         </div>
+        <%--<div style="width: 500px;height: 100%;float: right;">
+
+        </div>--%>
     </div>
+
 </body>
-
-
-
 </html>
