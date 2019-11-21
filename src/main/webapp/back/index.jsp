@@ -32,14 +32,14 @@
     <script type="text/javascript" src="../fdm/layer/layer.js"></script>
     <script type="text/javascript">
         $(function () {
+            var dragImgUpload = new DragImgUpload("#drop_area",{
+                callback:function (files) {
+                    //回调函数，可以传递给后台等等
+                    var file = files[0];
+                    console.log(file.name);
+                }
+            });
             $("#edit").click(function (){
-                var dragImgUpload = new DragImgUpload("#drop_area",{
-                    callback:function (files) {
-                        //回调函数，可以传递给后台等等
-                        var file = files[0];
-                        console.log(file.name);
-                    }
-                })
                 //点击编辑信息时，先判断当前存储在session中的数据是否失效，若失效则重新登陆
                 var ss="22";
                 if(ss==null  || ss=="" ){
@@ -50,12 +50,13 @@
                         type: 1,
                         title: ["编辑信息",'font-size:16px'],
                         area: ['700px','560px'],
-                        btn: ["确定","取消"],
                         content:  $("#EDITUSER")//捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
                     });
                 }
+            });
 
-
+            ("#yes").click(function (){
+                console.log("999999999999");
             });
         });
     </script>
@@ -549,10 +550,9 @@
                 <div style="clear:both"></div>
             </div>
 
+            <button type="button" class="btn btn-default" style="margin-left: 300px;background-color: #00ACEE" ><i id="yes">确定</i></button>
+            <button type="button" class="btn btn-default" style="background-color: #00ACEE;" id="no"><i ></i>取消</button>
         </div>
-        <%--<div style="width: 500px;height: 100%;float: right;">
-
-        </div>--%>
     </div>
 
 </body>
