@@ -32,16 +32,26 @@
     <script type="text/javascript" src="../fdm/layer/layer.js"></script>
     <script type="text/javascript">
         $(function () {
+            var file;
             var dragImgUpload = new DragImgUpload("#drop_area",{
                 callback:function (files) {
                     //回调函数，可以传递给后台等等
-                    var file = files[0];
+                    file = files[0];
                     console.log(file.name);
                 }
             });
             $("#edit").click(function (){
                 //点击编辑信息时，先判断当前存储在session中的数据是否失效，若失效则重新登陆
-                var ss="22";
+                var ss="${user.id}";
+                $("input[name='sex'][value='${user.sex}']").prop("checked", true);
+
+                //拿到存储在session中的数据，以及修改后页面的值
+                var username=$("#username").val();
+                var name=$("#name").val();
+                var email=$("#email").val();
+                var phone=$("#phone").val();
+                var age=$("#age").val();
+                var sex=$("input[name='sex']:checked").val();
                 if(ss==null  || ss=="" ){
                     layer.alert("登录失效，请重新登录",{icon:5});
                     window.location.href="${pageContext.request.contextPath}/back/login.jsp";
@@ -50,14 +60,27 @@
                         type: 1,
                         title: ["编辑信息",'font-size:16px'],
                         area: ['700px','560px'],
-                        content:  $("#EDITUSER")//捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
+                        btn:['确定','取消'],
+                        content:  $("#EDITUSER"),//捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
+                        yes:function(){
+                            alert("55555555");
+                            layer.closeAll();
+
+                        },
+                        no:function(){
+                            //点击取消时，关闭layer弹出框
+                            layer.closeAll();
+                        }
                     });
                 }
             });
 
-            ("#yes").click(function (){
+
+            /*$(".layui-layer-btn").find('a').click(function (){
+                //layui-layer-btn layui-layer-btn-
+
                 console.log("999999999999");
-            });
+            });*/
         });
     </script>
 
@@ -533,14 +556,14 @@
                     <div class="div_c_r" style="padding: 0;">
                         <div style="margin-left: 28px;" class="inp_radio">
                             <div class="checkboxforget1">
-                                <input type="radio" id="Remember1" name="sex" id="sex1" value="0" checked />
+                                <input type="radio" id="Remember1" name="sex" id="sex1" value="1" />
                                 <label for="Remember1"></label>
                             </div>
                             男
                         </div>
                         <div style="margin-left: 8px;" class="inp_radio">
                             <div class="checkboxforget1">
-                                <input type="radio" id="Remember2" name="sex" id="sex2" value="1" />
+                                <input type="radio" id="Remember2" name="sex" id="sex2" value="0"/>
                                 <label for="Remember2"></label>
                             </div>
                             女
@@ -549,9 +572,6 @@
                 </div>
                 <div style="clear:both"></div>
             </div>
-
-            <button type="button" class="btn btn-default" style="margin-left: 300px;background-color: #00ACEE" ><i id="yes">确定</i></button>
-            <button type="button" class="btn btn-default" style="background-color: #00ACEE;" id="no"><i ></i>取消</button>
         </div>
     </div>
 
