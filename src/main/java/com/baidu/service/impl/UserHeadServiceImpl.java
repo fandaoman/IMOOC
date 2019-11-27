@@ -43,6 +43,7 @@ public class UserHeadServiceImpl implements UserHeadService {
 
     @Override
     public UserHead findOne(String userId) {
-        return null;
+        UserHead userHead = userHeadDao.findOne(userId);
+        return userHead;
     }
 }

@@ -3,6 +3,8 @@ package com.baidu.controller;
 import com.baidu.common.Response;
 import com.baidu.common.Result;
 import com.baidu.entity.User;
+import com.baidu.entity.UserHead;
+import com.baidu.service.UserHeadService;
 import com.baidu.service.UserService;
 import com.baidu.utils.MD5Utils;
 import org.apache.tomcat.websocket.WsSession;
@@ -33,6 +35,10 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    //用户头像信息
+    @Autowired
+    private UserHeadService userHeadService;
     //用户登录
 
     @RequestMapping(value = "/login")@ResponseBody
@@ -52,6 +58,10 @@ public class UserController {
                     //将用户信息储存到session中
                     HttpSession session = request.getSession();
                     session.setAttribute("user",user);
+                    //查询此人头像
+                    UserHead userhead = userHeadService.findOne(user.getId());
+                    //将此人正在使用的头像存储到session中
+                    session.setAttribute("userHead",userhead);
                     return result.success(true);
                 }
                 return result.failure(false,"用户名或密码错误");

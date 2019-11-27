@@ -1,34 +1,67 @@
-2019-11-25 11:18:19,181 INFO (StartupInfoLogger.java:48)- Starting Application on fandaoman with PID 16984 (D:\ImoocWorkSpace\FDM_INOOC\target\classes started by fandaoman in D:\ImoocWorkSpace\FDM_INOOC)
-2019-11-25 11:18:19,226 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE
-2019-11-25 11:18:19,227 INFO (SpringApplication.java:637)- No active profile set, falling back to default profiles: default
-2019-11-25 11:18:29,054 INFO (StartupInfoLogger.java:57)- Started Application in 10.752 seconds (JVM running for 15.271)
-2019-11-25 11:31:50,681 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,username,realname,password,sex,age,tel,addressId,createTime,delFlag,email from fdm_user where username=? 
-2019-11-25 11:31:50,716 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: fandaoman(String)
-2019-11-25 11:31:50,808 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 1
-2019-11-25 15:00:34,883 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,username,realname,password,sex,age,tel,addressId,createTime,delFlag,email from fdm_user where username=? 
-2019-11-25 15:00:34,908 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: fandaoman(String)
-2019-11-25 15:00:34,973 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 1
-2019-11-25 15:00:35,292 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,username,realname,password,sex,age,tel,addressId,createTime,delFlag,email from fdm_user where username=? 
-2019-11-25 15:00:35,294 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: fandaoman(String)
-2019-11-25 15:00:35,316 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 1
-2019-11-25 15:37:35,589 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,username,realname,password,sex,age,tel,addressId,createTime,delFlag,email from fdm_user where username=? 
-2019-11-25 15:37:35,616 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: fandaoman(String)
-2019-11-25 15:37:35,635 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 1
-2019-11-25 15:53:58,561 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,username,realname,password,sex,age,tel,addressId,createTime,delFlag,email from fdm_user where username=? 
-2019-11-25 15:53:58,582 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: fandaoman(String)
-2019-11-25 15:53:58,695 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 1
-2019-11-25 16:13:00,302 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,username,realname,password,sex,age,tel,addressId,createTime,delFlag,email from fdm_user where username=? 
-2019-11-25 16:13:00,327 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: fandaoman(String)
-2019-11-25 16:13:00,385 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 1
-2019-11-25 16:46:11,251 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,username,realname,password,sex,age,tel,addressId,createTime,delFlag,email from fdm_user where username=? 
-2019-11-25 16:46:11,277 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: fandaoman(String)
-2019-11-25 16:46:11,311 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 1
-2019-11-25 16:46:11,419 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,username,realname,password,sex,age,tel,addressId,createTime,delFlag,email from fdm_user where username=? 
-2019-11-25 16:46:11,421 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: fandaoman(String)
-2019-11-25 16:46:11,488 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 1
-2019-11-25 16:47:43,951 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,username,realname,password,sex,age,tel,addressId,createTime,delFlag,email from fdm_user where username=? 
-2019-11-25 16:47:43,971 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: fandaoman(String)
-2019-11-25 16:47:43,990 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 1
-2019-11-25 17:57:10,503 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,username,realname,password,sex,age,tel,addressId,createTime,delFlag,email from fdm_user where username=? 
-2019-11-25 17:57:10,531 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: fandaoman(String)
-2019-11-25 17:57:10,616 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 1
+2019-11-27 15:21:51,488 INFO (StartupInfoLogger.java:48)- Starting Application on fandaoman with PID 16956 (D:\ImoocWorkSpace\FDM_INOOC\target\classes started by fandaoman in D:\ImoocWorkSpace\FDM_INOOC)
+2019-11-27 15:21:51,584 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE
+2019-11-27 15:21:51,585 INFO (SpringApplication.java:637)- No active profile set, falling back to default profiles: default
+2019-11-27 15:22:07,556 INFO (StartupInfoLogger.java:57)- Started Application in 17.014 seconds (JVM running for 23.229)
+2019-11-27 15:22:25,340 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,username,realname,password,sex,age,tel,addressId,createTime,delFlag,email from fdm_user where username=? 
+2019-11-27 15:22:25,369 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: fandaoman(String)
+2019-11-27 15:22:25,440 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 1
+2019-11-27 15:26:15,857 INFO (StartupInfoLogger.java:48)- Starting Application on fandaoman with PID 3164 (D:\ImoocWorkSpace\FDM_INOOC\target\classes started by fandaoman in D:\ImoocWorkSpace\FDM_INOOC)
+2019-11-27 15:26:15,870 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE
+2019-11-27 15:26:15,872 INFO (SpringApplication.java:637)- No active profile set, falling back to default profiles: default
+2019-11-27 15:26:24,875 INFO (StartupInfoLogger.java:57)- Started Application in 10.159 seconds (JVM running for 13.694)
+2019-11-27 15:27:30,313 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,username,realname,password,sex,age,tel,addressId,createTime,delFlag,email from fdm_user where username=? 
+2019-11-27 15:27:30,342 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: fandaoman(String)
+2019-11-27 15:27:30,385 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 1
+2019-11-27 15:33:32,810 INFO (StartupInfoLogger.java:48)- Starting Application on fandaoman with PID 16636 (D:\ImoocWorkSpace\FDM_INOOC\target\classes started by fandaoman in D:\ImoocWorkSpace\FDM_INOOC)
+2019-11-27 15:33:32,825 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE
+2019-11-27 15:33:32,826 INFO (SpringApplication.java:637)- No active profile set, falling back to default profiles: default
+2019-11-27 15:33:58,350 INFO (StartupInfoLogger.java:57)- Started Application in 27.059 seconds (JVM running for 31.467)
+2019-11-27 15:37:12,051 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,username,realname,password,sex,age,tel,addressId,createTime,delFlag,email from fdm_user where username=? 
+2019-11-27 15:37:12,137 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: fandaoman(String)
+2019-11-27 15:37:12,237 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 1
+2019-11-27 15:42:17,900 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,username,realname,password,sex,age,tel,addressId,createTime,delFlag,email from fdm_user where username=? 
+2019-11-27 15:42:17,918 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: fandaoman(String)
+2019-11-27 15:42:19,263 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 1
+2019-11-27 15:50:21,970 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,username,realname,password,sex,age,tel,addressId,createTime,delFlag,email from fdm_user where username=? 
+2019-11-27 15:50:22,042 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: fandaoman(String)
+2019-11-27 15:50:22,097 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 1
+2019-11-27 16:08:52,414 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,username,realname,password,sex,age,tel,addressId,createTime,delFlag,email from fdm_user where username=? 
+2019-11-27 16:08:52,446 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: fandaoman(String)
+2019-11-27 16:08:52,478 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 1
+2019-11-27 16:33:20,206 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,username,realname,password,sex,age,tel,addressId,createTime,delFlag,email from fdm_user where username=? 
+2019-11-27 16:33:20,258 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: fandaoman(String)
+2019-11-27 16:33:20,299 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 1
+2019-11-27 16:56:05,695 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,username,realname,password,sex,age,tel,addressId,createTime,delFlag,email from fdm_user where username=? 
+2019-11-27 16:56:05,748 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: fandaoman(String)
+2019-11-27 16:56:05,783 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 1
+2019-11-27 17:16:08,323 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: insert into user_poto(id,userId,head_sculpture_id,path,delFlag,createTime) values (?,?,?,?,?,?) 
+2019-11-27 17:16:08,397 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: 61806a096c1246b0b237f96a76ee795c(String), b6664a0b67534188998f8b932ddb8fee(String), beauty.jpg20191127(String), /back/images/photos/beauty.jpg(String), 0(String), 2019-11-27 17:16:08.293(Timestamp)
+2019-11-27 17:33:15,022 INFO (StartupInfoLogger.java:48)- Starting Application on fandaoman with PID 16048 (D:\ImoocWorkSpace\FDM_INOOC\target\classes started by fandaoman in D:\ImoocWorkSpace\FDM_INOOC)
+2019-11-27 17:33:15,029 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE
+2019-11-27 17:33:15,029 INFO (SpringApplication.java:637)- No active profile set, falling back to default profiles: default
+2019-11-27 17:33:24,152 INFO (StartupInfoLogger.java:57)- Started Application in 10.403 seconds (JVM running for 15.164)
+2019-11-27 17:36:45,666 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,username,realname,password,sex,age,tel,addressId,createTime,delFlag,email from fdm_user where username=? 
+2019-11-27 17:36:45,710 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: fandaoman(String)
+2019-11-27 17:36:45,752 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 1
+2019-11-27 17:39:30,759 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: insert into user_poto(id,userId,head_sculpture_id,path,delFlag,createTime) values (?,?,?,?,?,?) 
+2019-11-27 17:39:30,808 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: ab53e388bb4b4f5c99d4d569ee20c77c(String), b6664a0b67534188998f8b932ddb8fee(String), beauty.jpg20191127(String), /back/images/photos/beauty.jpg(String), 0(String), 2019-11-27 17:39:30.747(Timestamp)
+2019-11-27 17:48:20,616 INFO (StartupInfoLogger.java:48)- Starting Application on fandaoman with PID 7032 (D:\ImoocWorkSpace\FDM_INOOC\target\classes started by fandaoman in D:\ImoocWorkSpace\FDM_INOOC)
+2019-11-27 17:48:20,626 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE
+2019-11-27 17:48:20,626 INFO (SpringApplication.java:637)- No active profile set, falling back to default profiles: default
+2019-11-27 17:48:30,745 INFO (StartupInfoLogger.java:57)- Started Application in 11.487 seconds (JVM running for 15.474)
+2019-11-27 17:49:00,966 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,username,realname,password,sex,age,tel,addressId,createTime,delFlag,email from fdm_user where username=? 
+2019-11-27 17:49:00,999 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: fandaoman(String)
+2019-11-27 17:49:01,059 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 1
+2019-11-27 18:08:45,646 INFO (StartupInfoLogger.java:48)- Starting Application on fandaoman with PID 14472 (D:\ImoocWorkSpace\FDM_INOOC\target\classes started by fandaoman in D:\ImoocWorkSpace\FDM_INOOC)
+2019-11-27 18:08:45,657 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE
+2019-11-27 18:08:45,658 INFO (SpringApplication.java:637)- No active profile set, falling back to default profiles: default
+2019-11-27 18:10:54,284 INFO (StartupInfoLogger.java:48)- Starting Application on fandaoman with PID 7608 (D:\ImoocWorkSpace\FDM_INOOC\target\classes started by fandaoman in D:\ImoocWorkSpace\FDM_INOOC)
+2019-11-27 18:10:54,292 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE
+2019-11-27 18:10:54,292 INFO (SpringApplication.java:637)- No active profile set, falling back to default profiles: default
+2019-11-27 18:11:02,400 INFO (StartupInfoLogger.java:57)- Started Application in 8.858 seconds (JVM running for 11.732)
+2019-11-27 18:11:15,868 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,username,realname,password,sex,age,tel,addressId,createTime,delFlag,email from fdm_user where username=? 
+2019-11-27 18:11:15,894 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: fandaoman(String)
+2019-11-27 18:11:15,952 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 1
+2019-11-27 18:11:15,964 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,userId,head_sculpture_id,path,delFlag,createTime from user_poto where userId=? 
+2019-11-27 18:11:15,965 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: b6664a0b67534188998f8b932ddb8fee(String)
+2019-11-27 18:11:15,975 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 1

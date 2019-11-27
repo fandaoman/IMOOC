@@ -15,7 +15,7 @@ public class UserHead implements Serializable {
     private String userId;
 
     //头像id
-    private String headSculptureId;
+    private String head_sculpture_id;
 
     //图片路径
     private String path;
@@ -50,12 +50,12 @@ public class UserHead implements Serializable {
         this.userId = userId;
     }
 
-    public String getHeadSculptureId() {
-        return headSculptureId;
+    public String getHead_sculpture_id() {
+        return head_sculpture_id;
     }
 
-    public void setHeadSculptureId(String headSculptureId) {
-        this.headSculptureId = headSculptureId;
+    public void setHead_sculpture_id(String head_sculpture_id) {
+        this.head_sculpture_id = head_sculpture_id;
     }
 
     public String getPath() {
@@ -73,4 +73,5 @@ public class UserHead implements Serializable {
     public void setDelFlag(String delFlag) {
         this.delFlag = delFlag;
     }
+
 }

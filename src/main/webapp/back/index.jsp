@@ -31,27 +31,24 @@
     <script type="text/javascript" src="js/upload.js"></script>
     <script type="text/javascript" src="../fdm/layer/layer.js"></script>
     <script type="text/javascript">
+
         $(function () {
-            var file;
-            var dragImgUpload = new DragImgUpload("#drop_area",{
+
+            /*var dragImgUpload = new DragImgUpload("#drop_area",{
                 callback:function (files) {
                     //回调函数，可以传递给后台等等
-                    file = files[0];
-                    console.log(file.name);
+                    var file = files[0];
                 }
-            });
+            });*/
+
             $("#edit").click(function (){
                 //点击编辑信息时，先判断当前存储在session中的数据是否失效，若失效则重新登陆
                 var ss="${user.id}";
                 $("input[name='sex'][value='${user.sex}']").prop("checked", true);
+                $("#choose").click(function () {
+                    $("#photoFile").click();
+                })
 
-                //拿到存储在session中的数据，以及修改后页面的值
-                var username=$("#username").val();
-                var name=$("#name").val();
-                var email=$("#email").val();
-                var phone=$("#phone").val();
-                var age=$("#age").val();
-                var sex=$("input[name='sex']:checked").val();
                 if(ss==null  || ss=="" ){
                     layer.alert("登录失效，请重新登录",{icon:5});
                     window.location.href="${pageContext.request.contextPath}/back/login.jsp";
@@ -63,9 +60,36 @@
                         btn:['确定','取消'],
                         content:  $("#EDITUSER"),//捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
                         yes:function(){
-                            alert("55555555");
-                            layer.closeAll();
-
+                            //拿到存储在session中的数据，以及修改后页面的值
+                            var username=$("#username").val();
+                            var name=$("#name").val();
+                            var email=$("#email").val();
+                            var phone=$("#phone").val();
+                            var age=$("#age").val();
+                            var sex=$("input[name='sex']:checked").val();
+                            //定义一个字符串数组，存放参数返回后台
+                            var strs=[username,name,email,phone,age,sex];
+                            var jsondata=tojson(strs);
+                            if ($("#photoFile").val() == '') {
+                                return;
+                            }
+                            var formData = new FormData();
+                            formData.append('fileName', document.getElementById('photoFile').files[0]);
+                            formData.append('jsondata',jsondata);
+                            $.ajax({
+                                url: "${pageContext.request.contextPath}/userhead/upload",
+                                datatype: "json",
+                                type:"post",
+                                contentType: false, // 不使用默认请求头类型 application/x-www-form-urlencoded; charset=UTF-8
+                                processData: false, // 不序列化
+                                data: formData,
+                                success:function (data) {
+                                    if(data.status){
+                                        layer.alert("修改成功",{icon:1});
+                                        layer.closeAll();
+                                    }
+                                }
+                            });
                         },
                         no:function(){
                             //点击取消时，关闭layer弹出框
@@ -75,12 +99,18 @@
                 }
             });
 
+            //字符串数组转化为json格式
+            function tojson(arr){
 
-            /*$(".layui-layer-btn").find('a').click(function (){
-                //layui-layer-btn layui-layer-btn-
+                if(!arr.length) return null;
 
-                console.log("999999999999");
-            });*/
+
+                array = [];
+                array.push({"username":arr[0],"name":arr[1],
+                        "email":arr[2],"phone":arr[3],"age":arr[4],"sex":arr[5],"filename":arr[6]}
+                        );
+                return JSON.stringify(array);
+            }
         });
     </script>
 
@@ -494,10 +524,26 @@
     </footer>
 
     <div class="content details-div" id="EDITUSER" style="display: none;position: absolute;">
-
-
         <div style="width: 100%;height: 100%;float: left;">
-            <div id="drop_area"></div>
+            <div id="drop_area">
+                <a href="javascript:void(0)" id="choose">选择图片</a>
+                <input type="file" id="photoFile" style="display: none;" id="upload" onchange="show(this)">
+                <img id="preview_photo" src="">
+                <script>
+                    function show(file){
+                        var reader = new FileReader();	// 实例化一个FileReader对象，用于读取文件
+                        var img = document.getElementById('preview_photo'); 	// 获取要显示图片的标签
+
+                        //读取File对象的数据
+                        reader.onload = function(evt){
+                            img.width  =  "200";
+                            img.height =  "120";
+                            img.src = evt.target.result;
+                        }
+                        reader.readAsDataURL(file.files[0]);
+                    }
+                </script>
+            </div>
             <div class="div_f">
                 <div class="div_col" id="me1">
                     <div class="div_c_l"><span> 姓名：</span>
@@ -538,7 +584,6 @@
                 </div>
                 <div style="clear:both"></div>
             </div>
-
             <div class="div_f">
                 <div class="div_col" id="me5">
                     <div class="div_c_l"><span style="width:70px;">年龄：</span>
