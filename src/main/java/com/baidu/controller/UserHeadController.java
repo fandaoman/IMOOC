@@ -61,7 +61,7 @@ public class UserHeadController {
             User user1 =  (User) session.getAttribute("user");
             userHead.setUserId(user1.getId());
             //将得到的真实名称赋值给数据库中的路径信息
-            userHead.setPath("/back/images/photos/"+realname);
+            userHead.setPath("images/photos/"+realname);
             //记录此图片的id
             userHead.setHead_sculpture_id(realname+sdf.format(new Date()));
             //调用业务层方法保存图片

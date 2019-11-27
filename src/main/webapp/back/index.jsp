@@ -40,7 +40,13 @@
                     var file = files[0];
                 }
             });*/
-
+            //取出存储在session中的头像数据
+            var userhead="${userHead.path}";
+            if(userhead.length<=0){
+                $("#head").attr("src","images/profile.jpg");
+            }else{
+                $("#head").attr("src","${userHead.path}");
+            }
             $("#edit").click(function (){
                 //点击编辑信息时，先判断当前存储在session中的数据是否失效，若失效则重新登陆
                 var ss="${user.id}";
@@ -272,7 +278,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Emily Hart  ${user.realname}<span class="caret"></span></a>
                             <ul class="dropdown-menu user-info">
                                 <li class="dropdown-title-bar">
-                                    <img src="images/profile.jpg" class="profile-img">
+                                    <img id="head" src="" class="profile-img">
                                 </li>
                                 <li>
                                     <div class="navbar-login">
