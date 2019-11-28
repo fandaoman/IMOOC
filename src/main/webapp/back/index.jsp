@@ -34,18 +34,31 @@
 
         $(function () {
 
-            /*var dragImgUpload = new DragImgUpload("#drop_area",{
-                callback:function (files) {
-                    //回调函数，可以传递给后台等等
-                    var file = files[0];
-                }
-            });*/
             //取出存储在session中的头像数据
             var userhead="${userHead.path}";
             if(userhead.length<=0){
                 $("#head").attr("src","images/profile.jpg");
+                $("#preview_photo").attr("src","images/profile.jpg");
+                $("#preview_photo").attr("width","200px");
+                $("#preview_photo").attr("height","120px");
             }else{
                 $("#head").attr("src","${userHead.path}");
+                $("#preview_photo").attr("src","${userHead.path}");
+                $("#preview_photo").attr("width","200px");
+                $("#preview_photo").attr("height","120px");
+            }
+            //用户名
+            if("${user.username}".length>0){
+                $("#realname").text("${user.username}");
+            }else{
+                $("#realname").text("大SB");
+            }
+
+            //用户邮箱
+            if("${user.email}".length>0){
+                $("#user-email").text("${user.email}");
+            }else{
+                $("#user-email").text("大SB@email.com");
             }
             $("#edit").click(function (){
                 //点击编辑信息时，先判断当前存储在session中的数据是否失效，若失效则重新登陆
@@ -78,6 +91,8 @@
                             var jsondata=tojson(strs);
                             if ($("#photoFile").val() == '') {
                                 return;
+                            }else if($("#photoFile").val() == ''){
+                                return ;
                             }
                             var formData = new FormData();
                             formData.append('fileName', document.getElementById('photoFile').files[0]);
@@ -91,7 +106,10 @@
                                 data: formData,
                                 success:function (data) {
                                     if(data.status){
-                                        layer.alert("修改成功",{icon:1});
+                                        $("#head").attr("src","${userHead.path}");
+                                        $("#preview_photo").attr("src","${userHead.path}");
+                                        $("#preview_photo").attr("width","200px");
+                                        $("#preview_photo").attr("height","120px");
                                         layer.closeAll();
                                     }
                                 }
@@ -282,8 +300,8 @@
                                 </li>
                                 <li>
                                     <div class="navbar-login">
-                                        <h4 class="user-name" id="realname">Emily Hart</h4>
-                                        <p>emily_hart@email.com</p>
+                                        <h4 class="user-name" id="realname"></h4>
+                                        <p id="user-email"></p>
                                         <div class="btn-group margin-bottom-2x" role="group">
                                             <button type="button" class="btn btn-default" id="edit"><i class="fa fa-user" ></i> Profile</button>
                                             <button type="button" class="btn btn-default" id="logout"><i class="fa fa-sign-out"></i> Logout</button>
@@ -532,9 +550,9 @@
     <div class="content details-div" id="EDITUSER" style="display: none;position: absolute;">
         <div style="width: 100%;height: 100%;float: left;">
             <div id="drop_area">
-                <a href="javascript:void(0)" id="choose">选择图片</a>
+                <a href="javascript:void(0)" id="choose"><img id="preview_photo" src=""></a>
                 <input type="file" id="photoFile" style="display: none;" id="upload" onchange="show(this)">
-                <img id="preview_photo" src="">
+
                 <script>
                     function show(file){
                         var reader = new FileReader();	// 实例化一个FileReader对象，用于读取文件

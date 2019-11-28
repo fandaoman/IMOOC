@@ -68,6 +68,10 @@ public class UserHeadController {
             userHeadService.add(userHead);
             //上传文件
             fileName.transferTo(new File(realPath,fileName.getOriginalFilename()));
+            //查询此人头像
+            UserHead userhead = userHeadService.findOne(user1.getId());
+            //将此人正在使用的头像存储到session中
+            session.setAttribute("userHead",userhead);
             return result.success(true);
         }
     }
