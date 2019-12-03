@@ -46,9 +46,6 @@ public class UserController {
                             HttpServletRequest request) throws ServletException,IOException {
         Result result=new Result();
         if("".equals(username) || "".equals(password)){
-
-           /* result.setStatus(false);
-            result.setMsg("用户名或密码不能为空");*/
            return result.failure(false,"用户名或密码不能为空");
         }else{
             User user = userService.findByUsername(username);
@@ -71,7 +68,7 @@ public class UserController {
     }
 
     //用户信息的注册
-    @RequestMapping("/register")
+    @RequestMapping(value = "/register")
     public Result userRegister(String username,String password,String email,String realname){
         User user = new User();
         Result result = new Result();
@@ -99,7 +96,13 @@ public class UserController {
     @RequestMapping("/findAll")
     public List<User> findAll(){
         List<User> users = userService.FindAll();
-        return users;
+        if(users.size()>0){
+            return users;
+        }else{
+            return null;
+        }
+
+
     }
 
     @RequestMapping("/findOne")
@@ -114,8 +117,6 @@ public class UserController {
             User user = userService.findOne(admin.getId());
 
         }
-
-
         return map;
     }
 }

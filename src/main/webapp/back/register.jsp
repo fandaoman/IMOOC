@@ -16,7 +16,6 @@
     <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/login.css">
     <link rel="stylesheet" type="text/css" href="css/theme.css">
-
     <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../fdm/layer/layer.js"></script>
@@ -79,13 +78,14 @@
                 var email=$("#email").val();
                 var againpwd=$("#againPwd").val();
                 //首先确认两次密码是否输入一致
-                if (password==againpwd){
+                if (password === againpwd){
                     $.ajax({
-                        url:"${pageContext.request.contextPath}/user/register",
+                        url: '${pageContext.request.contextPath}/user/register',
                         datatype: "json",
                         data:{"username":username,"password":password,"email":email,"realname":realname},
                         type:"post",
                         success:function (data) {
+                            alert(username);
                             if(data.status){
                                 window.location.href="${pageContext.request.contextPath}/back/login.jsp";
                             }else{

@@ -11,6 +11,7 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
 
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-table.min.css">
     <link rel="stylesheet" type="text/css" href="css/animate.css">
     <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap-select.min.css">
@@ -22,6 +23,8 @@
 
     <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="js/bootstrap-table.min.js"></script>
     <script type="text/javascript" src="js/Chart.min.js"></script>
     <script type="text/javascript" src="js/bootstrap-select.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
@@ -135,7 +138,71 @@
                         );
                 return JSON.stringify(array);
             }
+
+
+            //用户信息的展示
+            $("#userTable").bootstrapTable({
+                url: '${pageContext.request.contextPath}/user/findAll',         //请求后台的URL（*）
+                method: 'post',                      //请求方式（*）
+                toolbar: '#toolbar',
+                singleSelect : true,
+                cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+                clickToSelect: true,                //是否启用点击选中行
+                columns: [
+
+                    /*{
+                        checkbox: true
+                    },*/
+                    {
+                        title: '序号',
+                        align: 'center',
+                        formatter: function (value, row, index) {
+                            var pageSize=$('#userTable').bootstrapTable('getOptions').pageSize;//通过表的#id 可以得到每页多少条
+                            var pageNumber=$('#userTable').bootstrapTable('getOptions').pageNumber;//通过表的#id 可以得到当前第几页
+                            return pageSize * (pageNumber - 1) + index + 1;//返回每条的序号： 每页条数 * （当前页 - 1 ）+ 序号
+                        }
+                    },
+                    {
+                        field: 'username',
+                        title: '昵称'
+                    },
+                    {
+                        field: 'realname',
+                        title: '姓名'
+                    },
+                    {
+                        field: 'email',
+                        title: '邮箱'
+                    },{
+                        field: 'createTime',
+                        title: '注册时间',
+                        //——修改——获取日期列的值进行转换
+                        formatter: function (value, row, index) {
+                            return changeDateFormat(value)
+                        }
+                    }
+                ]
+
+            });
+
+            //转换日期格式(时间戳转换为datetime格式)
+            function changeDateFormat(cellval) {
+                var dateVal = cellval + "";
+                if (cellval != null) {
+                    var date = new Date(parseInt(dateVal.replace("/Date(", "").replace(")/", ""), 10));
+                    var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+                    var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+
+                    var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+                    var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+                    var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+
+                    return date.getFullYear() + "-" + month + "-" + currentDate + " " + hours + ":" + minutes + ":" + seconds;
+                }
+            }
         });
+
+
     </script>
 
 </head>
@@ -494,48 +561,10 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <div class="panel panel-success">
                         <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-users"></i> New Users</h3>
+                            <h3 class="panel-title"><i class="fa fa-users"></i>Users Messages</h3>
                         </div>
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Username</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
-                                <tr>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
-                            </tbody>
+                        <table class="table table-striped" id="userTable">
+
                         </table>
                     </div>
                 </div>

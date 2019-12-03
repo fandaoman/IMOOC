@@ -12,7 +12,6 @@ import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.config.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /*

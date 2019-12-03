@@ -18,8 +18,8 @@
     </insert>
 
 
-    <!--检测是否注册时登录名冲突-->
-    <select id="FindAll" parameterType="String" resultType="User">
+    <!--查询所有用户信息-->
+    <select id="FindAll"  resultType="com.baidu.entity.User">
 
         select id,username,realname,password,sex,age,tel,addressId,createTime,delFlag,email
         from fdm_user

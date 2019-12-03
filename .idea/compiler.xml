@@ -6,11 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Shiro" />
         <module name="FDM_INOOC" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="FDM_INOOC" target="1.7" />
+      <module name="Shiro" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
