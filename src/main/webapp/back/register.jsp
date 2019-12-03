@@ -19,6 +19,41 @@
     <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../fdm/layer/layer.js"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            $("#register").click(function (){
+                //获取表单值
+                var username=$("#username").val();
+                var password=$("#password").val();
+                var realname=$("#realname").val();
+                var email=$("#email").val();
+                var againpwd=$("#againPwd").val();
+                //首先确认两次密码是否输入一致
+                if (password === againpwd){
+                    $.ajax({
+                        url: '${pageContext.request.contextPath}/user/register',
+                        datatype: "json",
+                        type:"post",
+                        data:{"username":username,"password":password,"email":email,"realname":realname},
+                        contentType: false, // 不使用默认请求头类型 application/x-www-form-urlencoded; charset=UTF-8
+                        processData: false, // 不序列化
+                        success:function (data) {
+                            alert(username);
+                            if(data.status){
+                                window.location.href="${pageContext.request.contextPath}/back/login.jsp";
+                            }else{
+                                layer.alert("<span style='color: #0c0c0c'>+data.msg+</span>",{icon: 5});
+                            }
+                        }
+                    });
+                }else{
+                    layer.alert("<span style='color: #0c0c0c'>"+"密码输入不一致，请确认密码"+"</span>",{icon:5});
+                }
+
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -68,38 +103,7 @@
                 </div>
         </div>
     </div>
-    <script type="text/javascript">
-        $(function() {
-            $("#register").click(function (){
-                //获取表单值
-                var username=$("#username").val();
-                var password=$("#password").val();
-                var realname=$("#realname").val();
-                var email=$("#email").val();
-                var againpwd=$("#againPwd").val();
-                //首先确认两次密码是否输入一致
-                if (password === againpwd){
-                    $.ajax({
-                        url: '${pageContext.request.contextPath}/user/register',
-                        datatype: "json",
-                        data:{"username":username,"password":password,"email":email,"realname":realname},
-                        type:"post",
-                        success:function (data) {
-                            alert(username);
-                            if(data.status){
-                                window.location.href="${pageContext.request.contextPath}/back/login.jsp";
-                            }else{
-                                layer.alert("<span style='color: #0c0c0c'>+data.msg+</span>",{icon: 5});
-                            }
-                        }
-                    });
-                }else{
-                    layer.alert("<span style='color: #0c0c0c'>"+"密码输入不一致，请确认密码"+"</span>",{icon:5});
-                }
 
-            });
-        });
-    </script>
 </body>
 
 </html>

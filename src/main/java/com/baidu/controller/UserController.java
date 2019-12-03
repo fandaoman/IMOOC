@@ -68,7 +68,7 @@ public class UserController {
     }
 
     //用户信息的注册
-    @RequestMapping(value = "/register")
+    @RequestMapping(value = "/register")@ResponseBody
     public Result userRegister(String username,String password,String email,String realname){
         User user = new User();
         Result result = new Result();
