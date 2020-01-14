@@ -44,4 +44,8 @@ public class Test {
         System.out.println(user.getRealname());
         userService.add(user);
     }
+    @org.junit.Test
+    public void ddd(){
+
+    }
 }

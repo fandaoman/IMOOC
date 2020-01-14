@@ -23,10 +23,14 @@
 
     <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
-
+    <script type="text/javascript" src="js/jquery.base64.js"></script>
     <script type="text/javascript" src="js/bootstrap-table.min.js"></script>
     <script type="text/javascript" src="js/Chart.min.js"></script>
     <script type="text/javascript" src="js/bootstrap-select.min.js"></script>
+
+    <script type="text/javascript" src="js/bootstrap-table-export.js"></script>
+    <script type="text/javascript" src="js/tableExport.js"></script>
+
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
 
@@ -146,8 +150,24 @@
                 method: 'post',                      //请求方式（*）
                 toolbar: '#toolbar',
                 singleSelect : true,
-                cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+                cache: false, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
                 clickToSelect: true,                //是否启用点击选中行
+                success:function (data) {
+                    $("#userTable").bootstrapTable({
+                        columns: column,
+                        data: data,
+                        pagination: false,
+                        //exportDataType: "basic",              //basic', 'all', 'selected'.
+                        //导出功能设置（关键代码）
+                        exportDataType:'all',//'basic':当前页的数据, 'all':全部的数据, 'selected':选中的数据
+                        showExport: true,  //是否显示导出按钮
+                        initExport: true,   //仅初始化是注册一次导出按钮click事件，刷新时需设置为false
+                        buttonsAlign:"right",  //按钮位置
+                        exportButton: $('#exportExcel'),     //为按钮btn_export  绑定导出事件  自定义导出按钮(可以不用)
+                        exportTypes:['xlsx','pdf'],  //导出文件类型，[ 'csv', 'txt', 'sql', 'doc', 'excel', 'xlsx', 'pdf']
+
+                    });
+                },
                 columns: [
 
                     /*{
@@ -182,8 +202,8 @@
                         }
                     }
                 ]
+        });
 
-            });
 
             //转换日期格式(时间戳转换为datetime格式)
             function changeDateFormat(cellval) {
@@ -203,6 +223,10 @@
         });
 
 
+        function  exportExcle(){
+            alert("开始导出功能");
+            window.location.href="${pageContext.request.contextPath}/export/excel";
+        }
     </script>
 
 </head>
@@ -562,6 +586,7 @@
                     <div class="panel panel-success">
                         <div class="panel-heading">
                             <h3 class="panel-title"><i class="fa fa-users"></i>Users Messages</h3>
+                            <button onclick="exportExcle()" value="导出Excel">导出</button>
                         </div>
                         <table class="table table-striped" id="userTable">
 
