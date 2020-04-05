@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "../mybatis-3-mapper.dtd" >
+<mapper namespace="com.baidu.dao.LotteryDao">
+
+	<resultMap id="lotteryMap" type="com.baidu.entity.Lottery">
+		<!--用id属性映射主键字段-->
+		<id property="id" column="id"/>
+		<!--用result属性映射非主键字段-->
+		<result property="redNumberOne" column="redNumber1"/>
+		<result property="redNumberTwo" column="redNumber2"/>
+		<result property="redNumberThree" column="redNumber3"/>
+		<result property="redNumberThour" column="redNumber4"/>
+		<result property="redNumberFive" column="redNumber5"/>
+		<result property="redNumberSix" column="redNumber6"/>
+		<result property="blueOne" column="blueNumber"/>
+		<result property="createTime" column="dateTime"/>
+	</resultMap>
+
+	<select id="findAll" resultMap="lotteryMap">
+		select id,redNumber1,redNumber2,redNumber3,redNumber4,redNumber5,redNumber6,blueNumber,dateTime from lottery order by id desc
+	</select>
+
+	<insert id="save" parameterType="com.baidu.entity.Lottery">
+		insert into lottery (id,redNumber1,redNumber2,redNumber3,redNumber4,redNumber5,redNumber6,blueNumber,dateTime)
+		values(#{id},#{redNumberOne},#{redNumberTwo},#{redNumberThree},#{redNumberThour},#{redNumberFive},#{redNumberSix},#{blueOne},#{createTime})
+	</insert>
+	<!--<select id="selectUsersByPage" resultType="User">
+		select * from t_user limit #{start},#{end}
+	</select>
+
+	<select id="count" resultType="int">
+		select count(*) from t_user
+			<where>
+					<if test="key!='age'and key!=''">
+						${key} like concat('%',#{value},'%')
+					</if>
+					<if test="key=='age'">
+						${key} = #{value}
+					</if>
+			</where>
+	</select>
+	
+	<select id="selectUsersByCondition" resultType="User">
+		select * from t_user
+		<where>
+			<if test="key !='age'">
+				${key} like concat('%',#{value},'%')
+			</if>
+			<if test="key=='age'">
+				${key} = #{value}
+			</if>
+		</where>
+		limit #{start},#{end}
+	</select>
+
+	<insert id="insertUser">
+		insert into t_user (username,password,birthday,age) values(#{username},#{password},#{birthday},#{age})
+	</insert>
+	<delete id="deleteUserById">
+		delete from t_user where id = #{id}
+	</delete>
+	<update id="updateUser">
+		update t_user set username=#{username},password=#{password},birthday=#{birthday},age=#{age}
+		where id=#{id}
+	</update>
+	<select id="selectUserByUsernameAndPassword" resultType="User">
+		select * from t_user where username =#{username} and password = #{password}
+	</select>-->
+
+	<!--<select id="findOneByName" parameterType="String" resultMap="userMap">
+		select * from t_user where name like concat('%',#{username},'%')
+	</select>
+	<select id="login" parameterType="String" resultMap="userMap">
+		select * from t_user where name=#{username} and age=#{password}
+	</select>-->
+</mapper>

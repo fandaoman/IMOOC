@@ -19,7 +19,6 @@
     <link rel="stylesheet" type="text/css" href="css/select2.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/theme.css">
-    <link rel="stylesheet" type="text/css" href="css/edit.css">
 
     <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -35,7 +34,6 @@
     <script type="text/javascript" src="js/index.js"></script>
 
     <%--头像上传js--%>
-    <script type="text/javascript" src="js/upload.js"></script>
     <script type="text/javascript" src="../fdm/layer/layer.js"></script>
     <script type="text/javascript">
 
@@ -94,8 +92,7 @@
                             var age=$("#age").val();
                             var sex=$("input[name='sex']:checked").val();
                             //定义一个字符串数组，存放参数返回后台
-                            var strs=[username,name,email,phone,age,sex];
-                            var jsondata=tojson(strs);
+                            var param={"username":username,"name":name,"email":email,"phone":phone,"age":age,"sex":sex};
                             if ($("#photoFile").val() == '') {
                                 return;
                             }else if($("#photoFile").val() == ''){
@@ -103,7 +100,7 @@
                             }
                             var formData = new FormData();
                             formData.append('fileName', document.getElementById('photoFile').files[0]);
-                            formData.append('jsondata',jsondata);
+                            formData.append('param',JSON.stringify(param));
                             $.ajax({
                                 url: "${pageContext.request.contextPath}/userhead/upload",
                                 datatype: "json",
@@ -130,20 +127,6 @@
                 }
             });
 
-            //字符串数组转化为json格式
-            function tojson(arr){
-
-                if(!arr.length) return null;
-
-
-                array = [];
-                array.push({"username":arr[0],"name":arr[1],
-                        "email":arr[2],"phone":arr[3],"age":arr[4],"sex":arr[5],"filename":arr[6]}
-                        );
-                return JSON.stringify(array);
-            }
-
-
             //用户信息的展示
             $("#userTable").bootstrapTable({
                 url: '${pageContext.request.contextPath}/user/findAll',         //请求后台的URL（*）
@@ -156,7 +139,7 @@
                     $("#userTable").bootstrapTable({
                         columns: column,
                         data: data,
-                        pagination: false,
+                        pagination: true,
                         //exportDataType: "basic",              //basic', 'all', 'selected'.
                         //导出功能设置（关键代码）
                         exportDataType:'all',//'basic':当前页的数据, 'all':全部的数据, 'selected':选中的数据
@@ -255,7 +238,7 @@
                 </a>
             </li>
             <li class="submenu">
-                <a href="table.html">
+                <a href="table.jsp">
                     <div>
                         <i class="menu-icon fa fa-table"></i>
                         <span class="menu-title">Table</span>
@@ -586,7 +569,7 @@
                     <div class="panel panel-success">
                         <div class="panel-heading">
                             <h3 class="panel-title"><i class="fa fa-users"></i>Users Messages</h3>
-                            <button onclick="exportExcle()" value="导出Excel">导出</button>
+                            <button onclick="exportExcle()" value="导出Excel" style="float: right;margin-top: -17px;background-color: cadetblue;">导出</button>
                         </div>
                         <table class="table table-striped" id="userTable">
 
@@ -605,7 +588,7 @@
         <div style="width: 100%;height: 100%;float: left;">
             <div id="drop_area">
                 <a href="javascript:void(0)" id="choose"><img id="preview_photo" src=""></a>
-                <input type="file" id="photoFile" style="display: none;" id="upload" onchange="show(this)">
+                <input type="file" id="photoFile" style="display: none;"  onchange="show(this)">
 
                 <script>
                     function show(file){

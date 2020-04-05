@@ -1,13 +1,11 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Flat Admin - Bootstrap Themes</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
-    <meta name="author" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/animate.css">
@@ -19,11 +17,123 @@
     <link rel="stylesheet" type="text/css" href="css/theme.css">
 
     <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <%--<script type="text/javascript" src="js/bootstrap/bootstrap-3.3.7/bootstrap.min.js"></script>--%>
+    <%--<script type="text/javascript" src="js/bootstrap.min.js"></script>--%>
+
     <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="js/dataTables.bootstrap.js"></script>
     <script type="text/javascript" src="js/bootstrap-select.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/bootstrap/bootstrap-3.3.7/bootstrap.js"></script>
+    <script type="text/javascript" src="js/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap/bootstrap-table-zh-CN.js"></script>
+    <!--引入bootstrap封装的方法-->
+    <script type="text/javascript" src="../fdm/layer/layer.js"></script>
+    <script type="text/javascript" src="js/bootStrapUtils.js"></script>
+    <%--<script type="text/javascript" src="js/table.js"></script>--%>
+    <script type="text/javascript">
+        $(function () {
+            //双色球数据展示
+            $('#tableLottery').bootstrapTable({
+                url: '${pageContext.request.contextPath}/lottery/findAll',         //请求后台的URL（*）
+                method: 'post',
+                //toolbar: '#toolbar',    //工具按钮用哪个容器
+                striped: true,      //是否显示行间隔色
+                cache: false,      //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+                pagination: true,     //是否显示分页（*）
+                sortable: false,      //是否启用排序
+                sortOrder: "asc",     //排序方式
+                pageNumber:1,      //初始化加载第一页，默认第一页
+                pageSize: 5,      //每页的记录行数（*）
+                pageList: [5, 10, 20, 50],  //可供选择的每页的行数（*）
+                queryParamsType:'limit', //默认值为 'limit' ,在默认情况下 传给服务端的参数为：offset,limit,sort// 设置为 ''  在这种情况下传给服务器的参数为：pageSize,pageNumber
+                //queryParams: queryParams,//前端调用服务时，会默认传递上边提到的参数，如果需要添加自定义参数，可以自定义一个函数返回请求参数
+                sidePagination: "client",   //分页方式：client客户端分页，server服务端分页（*）
+                //search: true,      //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+                strictSearch: true,
+                //showColumns: true,     //是否显示所有的列
+                //showRefresh: true,     //是否显示刷新按钮
+                minimumCountColumns: 2,    //最少允许的列数
+                clickToSelect: true,    //是否启用点击选中行
+                searchOnEnterKey: true,
+                columns: [
+                    {
+                        title: '序号',
+                        align: 'center',
+                        formatter: function (value, row, index) {
+                            var pageSize=$('#tableLottery').bootstrapTable('getOptions').pageSize;//通过表的#id 可以得到每页多少条
+                            var pageNumber=$('#tableLottery').bootstrapTable('getOptions').pageNumber;//通过表的#id 可以得到当前第几页
+                           /* console.log("--pageSize--"+pageSize);
+                            console.log("--pageNumber--"+pageNumber);
+                            console.log("--index--"+index);*/
+                            return pageSize * (pageNumber - 1) + index + 1;//返回每条的序号： 每页条数 * （当前页 - 1 ）+ 序号
+                        }
+                    },
+                    {field: 'id', title: '期数'},
+                    {field: 'redNumberOne', title: '红1',
+                        formatter: function (value, row, index) {
+                            return "<span style='color: red'>"+value+"</span>";
+                        }},
+                    {field: 'redNumberTwo', title: '红2',
+                        formatter: function (value, row, index) {
+                            return "<span style='color: red'>"+value+"</span>";
+                        }},
+                    {field: 'redNumberThree', title: '红3',
+                        formatter: function (value, row, index) {
+                            return "<span style='color: red'>"+value+"</span>";
+                        }},
+                    {field: 'redNumberThour', title: '红4',
+                        formatter: function (value, row, index) {
+                            return "<span style='color: red'>"+value+"</span>";
+                        }},
+                    {field: 'redNumberFive', title: '红5',
+                        formatter: function (value, row, index) {
+                            return "<span style='color: red'>"+value+"</span>";
+                        }},
+                    {field: 'redNumberSix', title: '红6',
+                        formatter: function (value, row, index) {
+                            return "<span style='color: red'>"+value+"</span>";
+                        }},
+                    {field: 'blueOne', title: '蓝1',
+                        formatter: function (value, row, index) {
+                            return "<span style='color: blue'>"+value+"</span>";
+                        }}
+                ]
+            });
+
+            //批量上传
+            $("#exportLottery").click(function () {
+                layer.open({
+                    type: 1,
+                    title: ["请选择Excel",'font-size:16px'],
+                    area: ['600px','150px'],
+                    btn:['确定','取消'],
+                    content:  $("#EDITUSER"),//捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
+                    yes:function(){
+                        //定义一个字符串数组，存放参数返回后台
+                        var formData = new FormData();
+                        formData.append('file', document.getElementById('excelLottery').files[0]);
+                        $.ajax({
+                            url: "${pageContext.request.contextPath}/lottery/insertExcel",
+                            datatype: "text",
+                            type:"post",
+                            contentType: false, // 不使用默认请求头类型 application/x-www-form-urlencoded; charset=UTF-8
+                            processData: false, // 不序列化
+                            data: formData,
+                            success:function (data) {
+                                console.log("成功");
+                            }
+                        });
+                    },
+                    no:function(){
+                        //点击取消时，关闭layer弹出框
+                        layer.closeAll();
+                    }
+                });
+            })
+        })
+
+    </script>
 </head>
 
 <body class="flat-blue sidebar-collapse">
@@ -50,7 +160,7 @@
                 </a>
             </li>
             <li class="submenu">
-                <a href="table.html" class="active">
+                <a href="table.jsp" class="active">
                     <div>
                         <i class="menu-icon fa fa-table"></i>
                         <span class="menu-title">Table</span>
@@ -215,44 +325,25 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <div class="content-block">
-                        <div class="block-title">Table Clean</div>
+                        <div class="block-title" style="width: 50%">双色球</div>
+                        <div class="block-title" id="exportLottery" style="width: 50%;float: right;margin-top: -44px;cursor: pointer">批量导入</div>
+
                         <div class="block-content">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Username</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                </tbody>
+                            <table class="table table-hover" id="tableLottery">
                             </table>
+                        </div>
+                    </div>
+                    <div class="content details-div" id="EDITUSER" style="display: none;position: absolute;">
+                        <div style="width: 100%;height: 100%;float: left;">
+                            <div id="drop_area">
+                                <input type="file" id="excelLottery" >
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <div class="content-block">
-                        <div class="block-title">Table Bordered</div>
+                        <div class="block-title">体彩</div>
                         <div class="block-content">
                             <table class="table table-hover table-bordered">
                                 <thead>
@@ -289,7 +380,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <div class="content-block">
-                        <div class="block-title">Table striped</div>
+                        <div class="block-title">快三</div>
                         <div class="block-content">
                             <table class="table table-hover table-striped">
                                 <thead>
@@ -327,7 +418,7 @@
 
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <div class="content-block">
-                        <div class="block-title">Table bordered & striped</div>
+                        <div class="block-title">大乐透</div>
                         <div class="block-content">
                             <table class="table table-hover table-bordered table-striped">
                                 <thead>

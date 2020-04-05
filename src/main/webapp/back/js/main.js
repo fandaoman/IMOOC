@@ -7,7 +7,7 @@ $(function() {
 
 
     $(function() {
-        $(".dial").knob();
+        //$(".dial").knob();
     });
 });
 

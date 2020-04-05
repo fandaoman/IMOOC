@@ -40,14 +40,12 @@ public class UserHeadController {
     @RequestMapping(value = "/upload" ,method = RequestMethod.POST)
     @ResponseBody
     public Result  add(HttpServletResponse response,HttpServletRequest request,
-                      MultipartFile fileName, String jsondata)throws Exception{
+                      MultipartFile fileName, String param)throws Exception{
         Result result = new Result();
-        if(fileName.isEmpty()){
+        if(fileName==null){
             return result.failure(false,"头像不能为空");
         }else{
-            String s1=jsondata.replace("[","");
-            String data=s1.replace("]","");
-            JSONObject jsonObject = JSONObject.parseObject(data);
+            JSONObject jsonObject = JSONObject.parseObject(param);
             request.setCharacterEncoding("utf-8");
             response.setCharacterEncoding("utf-8");
             response.setContentType("text/html;charset=utf-8");
