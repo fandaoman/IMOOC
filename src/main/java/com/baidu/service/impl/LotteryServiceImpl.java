@@ -30,4 +30,9 @@ public class LotteryServiceImpl implements LotteryService {
     public void save(Lottery lottery) {
         lotteryDao.save(lottery);
     }
+
+    @Override
+    public List<Lottery> findByNum(int num) {
+        return lotteryDao.findByNum(num);
+    }
 }

@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="FDM_INOOC" target="1.7" />
+      <module name="FDM_INOOC" target="8" />
       <module name="Shiro" target="1.7" />
     </bytecodeTargetLevel>
   </component>

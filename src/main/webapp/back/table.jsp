@@ -57,18 +57,18 @@
                 clickToSelect: true,    //是否启用点击选中行
                 searchOnEnterKey: true,
                 columns: [
-                    {
+                    /*{
                         title: '序号',
                         align: 'center',
                         formatter: function (value, row, index) {
                             var pageSize=$('#tableLottery').bootstrapTable('getOptions').pageSize;//通过表的#id 可以得到每页多少条
                             var pageNumber=$('#tableLottery').bootstrapTable('getOptions').pageNumber;//通过表的#id 可以得到当前第几页
-                           /* console.log("--pageSize--"+pageSize);
+                           /!* console.log("--pageSize--"+pageSize);
                             console.log("--pageNumber--"+pageNumber);
-                            console.log("--index--"+index);*/
+                            console.log("--index--"+index);*!/
                             return pageSize * (pageNumber - 1) + index + 1;//返回每条的序号： 每页条数 * （当前页 - 1 ）+ 序号
                         }
-                    },
+                    },*/
                     {field: 'id', title: '期数'},
                     {field: 'redNumberOne', title: '红1',
                         formatter: function (value, row, index) {
@@ -130,7 +130,89 @@
                         layer.closeAll();
                     }
                 });
-            })
+            });
+
+            /*根据所选的近几期预测*/
+            $("#forcastLottery").click(function () {
+                /*获取选择的最近几期*/
+                var num=$("#num").val();
+                var reg = /^[1-9]\d*$/;
+                var flag=reg.test(num);
+                if(flag || num==null || num.length<=0){
+                    $.ajax({
+                        url: "${pageContext.request.contextPath}/lottery/forcast",
+                        type:"post",
+                        dataType:"json",
+                        data: {"num":num},
+                        success:function (data) {
+                            console.log("成功"+data);
+                        }
+                });
+                }else{
+                    layer.tips("请输入正整数或空值",$("#num"),{tips:[2, '#ff9800']});
+                }
+            });
+
+            $("#insertOne").click(function () {
+                layer.open({
+                    type: 1,
+                    title: ["请输入本期中奖号码",'font-size:16px'],
+                    area: ['600px','150px'],
+                    btn:['确定','取消'],
+                    content:  $("#insertLottery"),//捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
+                    yes:function(){
+                        /*获取球的数值*/
+                        var id=$("#ballId").val();
+                        var red1=$("#red1").val();var red2=$("#red2").val();var red3=$("#red3").val();
+                        var red4=$("#red4").val();var red5=$("#red5").val();var red6=$("#red6").val();
+                        var blue=$("#blue1").val();
+                        if(id.trim()===""){
+                            layer.tips("请输入本期期数",$("#ballId"),{tips:[3, '#ff9800']});
+                        }else if(red1.trim()===""){
+                            layer.tips("请输入第一个红球的号码",$("#red1"),{tips:[3, '#ff9800']});
+                        }else if(red2.trim()===""){
+                            layer.tips("请输入第二个红球的号码",$("#red2"),{tips:[3, '#ff9800']});
+                        }else if(red3.trim()===""){
+                            layer.tips("请输入第三个红球的号码",$("#red3"),{tips:[3, '#ff9800']});
+                        }else if(red4.trim()===""){
+                            layer.tips("请输入第四个红球的号码",$("#red4"),{tips:[3, '#ff9800']});
+                        }else if(red5.trim()===""){
+                            layer.tips("请输入第五个红球的号码",$("#red5"),{tips:[3, '#ff9800']});
+                        }else if(red6.trim()===""){
+                            layer.tips("请输入第二个红球的号码",$("#red6"),{tips:[3, '#ff9800']});
+                        }else if(blue.trim()===""){
+                            layer.tips("请输入蓝球的号码",$("#blue1"),{tips:[3, '#ff9800']});
+                        }else{
+                            alert("开始导入"+red1)
+                            var formData = new FormData();
+                            var param={
+                                "ballId":id,
+                                "red1":red1,"red2":red2,"red3":red3,
+                                "red4":red4,"red5":red5,"red6":red6,
+                                "blue":blue,
+                            };
+                            formData.append("param",param);
+                            $.ajax({
+                                url: "${pageContext.request.contextPath}/lottery/insertone",
+                                type:"post",
+                                dataType:"json",
+                                data: formData,
+                                success:function (data) {
+                                    console.log("成功"+data);
+                                }
+                            });
+                        }
+
+                    },
+                    no:function(){
+                        //点击取消时，关闭layer弹出框
+                        $("#red1").text("");$("#red2").text("");$("#red3").text("");
+                        $("#red4").val("");$("#red5").val("");$("#red6").val("");
+                        $("#blue1").val("");
+                        layer.closeAll();
+                    }
+                });
+            });
         })
 
     </script>
@@ -325,9 +407,22 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <div class="content-block">
-                        <div class="block-title" style="width: 50%">双色球</div>
-                        <div class="block-title" id="exportLottery" style="width: 50%;float: right;margin-top: -44px;cursor: pointer">批量导入</div>
+                        <div class="block-title" style="width: 25%">双色球</div>
+                        <div class="block-title"  style="width: 75%;float: right;margin-top: -49px;cursor: pointer">
+                            <button id="insertOne" style="margin-left: 115px;" >导入</button>
+                            <input id="num" style="width: 90px;" />
+                            <button id="forcastLottery" style="margin-left: -6px;">预测本期号码</button>
+                            <button id="exportLottery" style="float: right;">批量导入</button>
+                        </div>
 
+                        <div class="block-content">
+
+                            <div class="block-title" style="width: 100%;">
+                                预测结果展示区
+                            </div>
+
+
+                        </div>
                         <div class="block-content">
                             <table class="table table-hover" id="tableLottery">
                             </table>
@@ -340,40 +435,28 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="content details-div" id="insertLottery" style="display: none;position: absolute;">
+                        <div style="width: 100%;height: 100%;float: left;">
+                            <div style="margin-top: 25px;">
+                                <input type="text" style="width: 60px;" id="ballId">
+                                <input type="text" style="width: 60px;" id="red1">
+                                <input type="text" style="width: 60px;" id="red2">
+                                <input type="text" style="width: 60px;" id="red3">
+                                <input type="text" style="width: 60px;" id="red4">
+                                <input type="text" style="width: 60px;" id="red5">
+                                <input type="text" style="width: 60px;" id="red6">
+                                <input type="text" style="width: 60px;" id="blue1">
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <div class="content-block">
                         <div class="block-title">体彩</div>
                         <div class="block-content">
                             <table class="table table-hover table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Username</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                </tbody>
+                                <h3>体彩 模块待开发</h3>
                             </table>
                         </div>
                     </div>
@@ -383,34 +466,7 @@
                         <div class="block-title">快三</div>
                         <div class="block-content">
                             <table class="table table-hover table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Username</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                </tbody>
+                                <h3>快三 模块待开发</h3>
                             </table>
                         </div>
                     </div>
@@ -421,34 +477,7 @@
                         <div class="block-title">大乐透</div>
                         <div class="block-content">
                             <table class="table table-hover table-bordered table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Username</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                </tbody>
+                                <h3>大乐透 模块待开发</h3>
                             </table>
                         </div>
                     </div>

@@ -15,8 +15,12 @@ import java.util.List;
 @Mapper
 public interface LotteryDao {
 
+    //查询所有
     List<Lottery> findAll();
 
-    //插入
+    //批量插入
     void save(Lottery lottery);
+
+    //根据所选的num查询num条记录
+    List<Lottery> findByNum(int num);
 }

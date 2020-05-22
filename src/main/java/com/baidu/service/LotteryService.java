@@ -14,4 +14,7 @@ public interface LotteryService {
     List<Lottery> findAll();
 
     void save(Lottery lottery);
+
+    //根据所选的num查询num条记录
+    List<Lottery> findByNum(int num);
 }
