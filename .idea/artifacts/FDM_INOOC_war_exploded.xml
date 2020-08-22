@@ -54,7 +54,7 @@
           <element id="library" level="project" name="Maven: org.skyscreamer:jsonassert:1.4.0" />
           <element id="library" level="project" name="Maven: com.vaadin.external.google:android-json:0.0.20131108.vaadin1" />
           <element id="library" level="project" name="Maven: org.springframework:spring-test:4.3.8.RELEASE" />
-          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.48" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.38" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-data-jpa:1.5.3.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-jdbc:1.5.3.RELEASE" />
           <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-jdbc:8.5.14" />
@@ -107,6 +107,21 @@
           <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpclient:4.5.6" />
           <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpcore:4.4.6" />
           <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.10" />
+          <element id="library" level="project" name="Maven: org.apache.shiro:shiro-spring-boot-starter:1.5.3" />
+          <element id="library" level="project" name="Maven: org.apache.shiro:shiro-spring:1.5.3" />
+          <element id="library" level="project" name="Maven: org.apache.shiro:shiro-core:1.5.3" />
+          <element id="library" level="project" name="Maven: org.apache.shiro:shiro-lang:1.5.3" />
+          <element id="library" level="project" name="Maven: org.apache.shiro:shiro-cache:1.5.3" />
+          <element id="library" level="project" name="Maven: org.apache.shiro:shiro-crypto-hash:1.5.3" />
+          <element id="library" level="project" name="Maven: org.apache.shiro:shiro-crypto-core:1.5.3" />
+          <element id="library" level="project" name="Maven: org.apache.shiro:shiro-crypto-cipher:1.5.3" />
+          <element id="library" level="project" name="Maven: org.apache.shiro:shiro-config-core:1.5.3" />
+          <element id="library" level="project" name="Maven: org.apache.shiro:shiro-config-ogdl:1.5.3" />
+          <element id="library" level="project" name="Maven: commons-beanutils:commons-beanutils:1.9.3" />
+          <element id="library" level="project" name="Maven: commons-collections:commons-collections:3.2.2" />
+          <element id="library" level="project" name="Maven: org.apache.shiro:shiro-event:1.5.3" />
+          <element id="library" level="project" name="Maven: org.apache.shiro:shiro-web:1.5.3" />
+          <element id="library" level="project" name="Maven: org.owasp.encoder:encoder:1.2.2" />
         </element>
       </element>
       <element id="directory" name="META-INF">

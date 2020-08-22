@@ -7,14 +7,14 @@ import java.util.stream.Collectors;
  * @Author: FDM
  * @Date: 2020/5/3 16:04
  * @Version 1.0
- * @预测号码
+ * @des 预测号码
  */
 public class ForcastUtils {
 
     /*
      * List集合排序
      * */
-    public static List<String[]> getSortList(List<String[]> list){
+    public static void getSortList(List<String[]> list){
         for (int i=0;i<list.size();i++){
             /**
              * int compare(String[] p1,String[] p2)返回一个基本类型的整形
@@ -38,11 +38,10 @@ public class ForcastUtils {
             });
         }
 
-        return list;
     }
 
     /**
-     * @统计号码出现的次数：map
+     * @des 统计号码出现的次数：map
      * */
     public static HashMap<String, HashMap<String,Integer>> getTJMap(List<String[]> list){
         HashMap<String, HashMap<String,Integer>> indexMap = new HashMap<>();
@@ -105,8 +104,8 @@ public class ForcastUtils {
     }
 
     /**
-     * @version 1.0
-     * @预测号码
+     * @des version 1.0
+     * @des 预测号码
      * */
     public static List<Integer> forcastNum(HashMap<String,HashMap<String,Integer>> indexmap){
 
@@ -290,10 +289,10 @@ public class ForcastUtils {
 
     /**
      * 再一次排序
-     * @param list
+     * @param list 集合
      * @return list
      * */
-    public static List<Integer> sortListAgain(List<Integer> list){
+    private static List<Integer> sortListAgain(List<Integer> list){
         ArrayList<Integer> newlist = new ArrayList<>();
         for(int i=0;i<list.size()-1;i++){
             newlist.add(list.get(i));
@@ -309,15 +308,4 @@ public class ForcastUtils {
         return list2;
     }
 
-
-    public static void main(String[] args) {
-        ArrayList<Integer> list = new ArrayList<>();
-        list.add(13);list.add(14);
-        list.add(22);list.add(21);
-        list.add(31);
-        list.add(31);list.add(4);
-
-        System.out.println("---"+sortList(list));
-
-    }
 }

@@ -6,13 +6,31 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Shiro" />
         <module name="FDM_INOOC" />
+        <module name="User" />
+        <module name="Lottery" />
+        <module name="Shiro" />
+        <module name="Eureka" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="Address" target="1.8" />
+      <module name="demo" target="1.8" />
+      <module name="Eureka" target="1.8" />
       <module name="FDM_INOOC" target="8" />
+      <module name="Lotter" target="1.8" />
+      <module name="Lottery" target="1.8" />
       <module name="Shiro" target="1.7" />
+      <module name="User" target="1.5" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Address" options="-parameters" />
+      <module name="Eureka" options="" />
+      <module name="Lotter" options="-parameters" />
+      <module name="Lottery" options="" />
+      <module name="demo" options="-parameters" />
+    </option>
   </component>
 </project>

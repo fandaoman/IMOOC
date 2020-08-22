@@ -7,6 +7,10 @@ import com.baidu.entity.UserHead;
 import com.baidu.service.UserHeadService;
 import com.baidu.service.UserService;
 import com.baidu.utils.MD5Utils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.apache.tomcat.websocket.WsSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -43,7 +47,7 @@ public class UserController {
 
     @RequestMapping(value = "/login")@ResponseBody
     public Result userLogin(String username, String password,
-                            HttpServletRequest request) throws ServletException,IOException {
+                            HttpServletRequest request) {
         Result result=new Result();
         if("".equals(username) || "".equals(password)){
            return result.failure(false,"用户名或密码不能为空");
@@ -66,7 +70,22 @@ public class UserController {
         }
         return result;
     }
+    @RequestMapping(value = "/shirologin")@ResponseBody
+    public Result userLogin2(String username, String password,
+                            HttpServletRequest request) {
+        Result result=new Result();
+        //获取主体对象
+        Subject subject = SecurityUtils.getSubject();
+        try {
+            subject.login(new UsernamePasswordToken(username , password));
+        } catch (UnsupportedOperationException ex){
+            return result.failure(false,"用户名错误");
+        } catch (IncorrectCredentialsException ex){
+            return result.failure(false,"密码错误");
+        }
 
+        return result;
+    }
     //用户信息的注册
     @RequestMapping(value = "/register")@ResponseBody
     public Result userRegister(String username,String password,String email,String realname){

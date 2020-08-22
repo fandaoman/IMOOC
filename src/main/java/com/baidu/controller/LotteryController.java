@@ -1,10 +1,7 @@
 package com.baidu.controller;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.baidu.entity.Lottery;
 import com.baidu.service.LotteryService;
-import com.baidu.utils.ForcastUtils;
 import com.baidu.utils.JSONUtil;
 import com.baidu.utils.ReadExcelUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.InputStream;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static com.baidu.utils.ForcastUtils.*;
 
@@ -84,7 +76,7 @@ public class LotteryController {
     public List<Integer> getForcase(@Param("num") String num){
         List<Lottery> lotteries;
         if("".equals(num)){
-            lotteries = lotteryService.findByNum(1000000000);
+            lotteries = lotteryService.findAll();
         }else{
             lotteries = lotteryService.findByNum(Integer.parseInt(num));
         }

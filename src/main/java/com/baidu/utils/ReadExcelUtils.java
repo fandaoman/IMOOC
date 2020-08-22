@@ -36,19 +36,30 @@ public class ReadExcelUtils {
             for(int y=0;y<=7;y++){
                 row.getCell(y).setCellType(Cell.CELL_TYPE_STRING);
             }
-            if(row == null || StringUtils.isEmpty(row.getCell(0).getStringCellValue())){
+            if(StringUtils.isEmpty(row.getCell(0).getStringCellValue())){
                 continue;
             }
             Lottery data = new Lottery();
+            data.setId(row.getCell(0) == null? "" : row.getCell(0).getStringCellValue());
+            data.setRedNumberOne(row.getCell(1) == null? "" :
+                    (row.getCell(1).getStringCellValue().length()== 1 ? "0"+row.getCell(1).getStringCellValue() :row.getCell(1).getStringCellValue()));
+            data.setRedNumberTwo(row.getCell(2) == null? "" :
+                    (row.getCell(2).getStringCellValue().length()== 1 ? "0"+row.getCell(2).getStringCellValue() :row.getCell(2).getStringCellValue()));
+            data.setRedNumberThree(row.getCell(3) == null? "" :
+                    (row.getCell(3).getStringCellValue().length()== 1 ? "0"+row.getCell(3).getStringCellValue() :row.getCell(3).getStringCellValue()));
 
-            data.setId(row.getCell(0) == null? "":row.getCell(0).getStringCellValue());
-            data.setRedNumberOne(row.getCell(1) == null? "":row.getCell(1).getStringCellValue());
-            data.setRedNumberTwo(row.getCell(2) == null? "":row.getCell(2).getStringCellValue());
-            data.setRedNumberThree(row.getCell(3) == null? "":row.getCell(3).getStringCellValue());
-            data.setRedNumberThour(row.getCell(4) == null? "":row.getCell(4).getStringCellValue());
-            data.setRedNumberFive(row.getCell(5) == null? "":row.getCell(5).getStringCellValue());
-            data.setRedNumberSix(row.getCell(6) == null? "":row.getCell(6).getStringCellValue());
-            data.setBlueOne(row.getCell(7) == null? "":row.getCell(7).getStringCellValue());
+            data.setRedNumberThour(row.getCell(4) == null? "":
+                    (row.getCell(4).getStringCellValue().length()== 1 ? "0"+row.getCell(4).getStringCellValue() :row.getCell(4).getStringCellValue()));
+
+            data.setRedNumberFive(row.getCell(5) == null? "":
+                    (row.getCell(5).getStringCellValue().length()== 1 ? "0"+row.getCell(5).getStringCellValue() :row.getCell(5).getStringCellValue()));
+
+            data.setRedNumberSix(row.getCell(6) == null? "":
+                    (row.getCell(6).getStringCellValue().length()== 1 ? "0"+row.getCell(6).getStringCellValue() :row.getCell(6).getStringCellValue()));
+
+            data.setBlueOne(row.getCell(7) == null? "":
+                    (row.getCell(7).getStringCellValue().length()== 1 ? "0"+row.getCell(7).getStringCellValue() :row.getCell(7).getStringCellValue()));
+
             data.setCreateTime(new Date());
             datas.add(data);
 

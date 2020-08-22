@@ -4,7 +4,7 @@
 
 
     <!--登录-->
-    <select id="findByUsername" parameterType="String" resultType="User">
+    <select id="findByUsername" parameterType="String" resultType="com.baidu.entity.User">
 
         select id,username,realname,password,sex,age,tel,addressId,createTime,delFlag,email
         from fdm_user
