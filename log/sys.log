@@ -1,71 +1,19 @@
-2020-07-20 22:03:31,722 INFO (StartupInfoLogger.java:48)- Starting Application on fandaoman with PID 10416 (G:\IdeaWork\Eureka\IMOOC\target\classes started by FDM in G:\IdeaWork\Eureka\IMOOC)
-2020-07-20 22:03:31,802 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE
-2020-07-20 22:03:31,802 INFO (SpringApplication.java:637)- No active profile set, falling back to default profiles: default
-2020-07-20 22:04:03,271 INFO (StartupInfoLogger.java:57)- Started Application in 33.939 seconds (JVM running for 42.682)
-2020-07-20 22:04:38,101 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,username,realname,password,sex,age,tel,addressId,createTime,delFlag,email from fdm_user where username=? 
-2020-07-20 22:04:38,131 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: fandaoman(String)
-2020-07-20 22:04:38,261 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 1
-2020-07-20 22:04:38,271 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,userId,head_sculpture_id,path,delFlag,createTime from user_poto where userId=? 
-2020-07-20 22:04:38,271 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: b6664a0b67534188998f8b932ddb8fee(String)
-2020-07-20 22:04:38,271 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 1
-2020-07-20 22:04:39,194 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,username,realname,password,sex,age,tel,addressId,createTime,delFlag,email from fdm_user 
-2020-07-20 22:04:39,196 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: 
-2020-07-20 22:04:39,201 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 1
-2020-07-20 22:04:45,677 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,redNumber1,redNumber2,redNumber3,redNumber4,redNumber5,redNumber6,blueNumber,dateTime from lottery order by id desc 
-2020-07-20 22:04:45,679 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: 
-2020-07-20 22:04:45,709 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 64
-2020-07-20 22:05:39,113 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,redNumber1,redNumber2,redNumber3,redNumber4,redNumber5,redNumber6,blueNumber,dateTime from lottery order by id desc 
-2020-07-20 22:05:39,115 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: 
-2020-07-20 22:05:39,130 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 64
-2020-07-20 22:07:09,028 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,redNumber1,redNumber2,redNumber3,redNumber4,redNumber5,redNumber6,blueNumber,dateTime from lottery order by id desc 
-2020-07-20 22:07:09,030 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: 
-2020-07-20 22:07:09,043 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 65
-2020-07-20 22:07:17,839 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,redNumber1,redNumber2,redNumber3,redNumber4,redNumber5,redNumber6,blueNumber,dateTime from lottery order by id desc 
-2020-07-20 22:07:17,840 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: 
-2020-07-20 22:07:17,849 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 65
-2020-07-20 22:08:19,036 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,redNumber1,redNumber2,redNumber3,redNumber4,redNumber5,redNumber6,blueNumber,dateTime from lottery order by id desc 
-2020-07-20 22:08:19,037 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: 
-2020-07-20 22:08:19,046 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 65
-2020-07-20 22:09:01,609 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,redNumber1,redNumber2,redNumber3,redNumber4,redNumber5,redNumber6,blueNumber,dateTime from lottery order by id desc 
-2020-07-20 22:09:01,610 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: 
-2020-07-20 22:09:01,619 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 65
-2020-07-20 22:09:42,777 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,redNumber1,redNumber2,redNumber3,redNumber4,redNumber5,redNumber6,blueNumber,dateTime from lottery order by id desc 
-2020-07-20 22:09:42,778 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: 
-2020-07-20 22:09:42,784 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 65
-2020-07-20 22:19:50,910 INFO (StartupInfoLogger.java:48)- Starting Application on fandaoman with PID 2860 (G:\IdeaWork\Eureka\IMOOC\target\classes started by FDM in G:\IdeaWork\Eureka\IMOOC)
-2020-07-20 22:19:50,917 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE
-2020-07-20 22:19:50,918 INFO (SpringApplication.java:637)- No active profile set, falling back to default profiles: default
-2020-07-20 22:20:05,156 INFO (StartupInfoLogger.java:57)- Started Application in 15.752 seconds (JVM running for 19.008)
-2020-07-20 22:30:01,381 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,username,realname,password,sex,age,tel,addressId,createTime,delFlag,email from fdm_user where username=? 
-2020-07-20 22:30:01,406 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: fandaoman(String)
-2020-07-20 22:30:01,429 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 1
-2020-07-20 22:30:01,438 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,userId,head_sculpture_id,path,delFlag,createTime from user_poto where userId=? 
-2020-07-20 22:30:01,439 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: b6664a0b67534188998f8b932ddb8fee(String)
-2020-07-20 22:30:01,442 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 1
-2020-07-20 22:30:02,336 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,username,realname,password,sex,age,tel,addressId,createTime,delFlag,email from fdm_user 
-2020-07-20 22:30:02,338 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: 
-2020-07-20 22:30:02,343 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 1
-2020-07-20 22:30:05,951 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,redNumber1,redNumber2,redNumber3,redNumber4,redNumber5,redNumber6,blueNumber,dateTime from lottery order by id desc 
-2020-07-20 22:30:05,953 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: 
-2020-07-20 22:30:05,981 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 65
-2020-07-20 22:30:11,499 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,redNumber1,redNumber2,redNumber3,redNumber4,redNumber5,redNumber6,blueNumber,dateTime from lottery order by id desc 
-2020-07-20 22:30:11,501 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: 
-2020-07-20 22:30:11,517 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 65
-2020-07-20 22:30:14,776 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,redNumber1,redNumber2,redNumber3,redNumber4,redNumber5,redNumber6,blueNumber,dateTime from lottery order by id desc 
-2020-07-20 22:30:14,778 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: 
-2020-07-20 22:30:14,785 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 65
-2020-07-20 22:30:17,452 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,redNumber1,redNumber2,redNumber3,redNumber4,redNumber5,redNumber6,blueNumber,dateTime from lottery order by id desc 
-2020-07-20 22:30:17,454 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: 
-2020-07-20 22:30:17,464 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 65
-2020-07-20 22:30:20,162 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,redNumber1,redNumber2,redNumber3,redNumber4,redNumber5,redNumber6,blueNumber,dateTime from lottery order by id desc 
-2020-07-20 22:30:20,164 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: 
-2020-07-20 22:30:20,170 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 65
-2020-07-20 22:30:23,335 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,redNumber1,redNumber2,redNumber3,redNumber4,redNumber5,redNumber6,blueNumber,dateTime from lottery order by id desc 
-2020-07-20 22:30:23,337 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: 
-2020-07-20 22:30:23,344 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 65
-2020-07-20 22:30:31,800 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,redNumber1,redNumber2,redNumber3,redNumber4,redNumber5,redNumber6,blueNumber,dateTime from lottery order by id desc 
-2020-07-20 22:30:31,801 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: 
-2020-07-20 22:30:31,807 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 65
-2020-07-20 22:30:36,259 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,redNumber1,redNumber2,redNumber3,redNumber4,redNumber5,redNumber6,blueNumber,dateTime from lottery order by id desc 
-2020-07-20 22:30:36,260 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: 
-2020-07-20 22:30:36,266 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 65
+2021-03-24 11:28:52,045 INFO (StartupInfoLogger.java:48)- Starting Application on fandaoman with PID 316 (G:\IdeaWork\Eureka\IMOOC\target\classes started by FDM in G:\IdeaWork\Eureka\IMOOC)
+2021-03-24 11:28:52,111 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE
+2021-03-24 11:28:52,112 INFO (SpringApplication.java:637)- No active profile set, falling back to default profiles: default
+2021-03-24 11:29:15,217 INFO (StartupInfoLogger.java:57)- Started Application in 25.119 seconds (JVM running for 31.767)
+2021-03-24 13:45:25,414 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,username,realname,password,sex,age,tel,addressId,createTime,delFlag,email from fdm_user where username=? 
+2021-03-24 13:45:25,442 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: fandaoman(String)
+2021-03-24 13:45:25,587 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 1
+2021-03-24 13:45:25,617 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,userId,head_sculpture_id,path,delFlag,createTime from user_poto where userId=? 
+2021-03-24 13:45:25,618 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: b6664a0b67534188998f8b932ddb8fee(String)
+2021-03-24 13:45:25,652 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 1
+2021-03-24 13:45:27,816 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,username,realname,password,sex,age,tel,addressId,createTime,delFlag,email from fdm_user 
+2021-03-24 13:45:27,817 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: 
+2021-03-24 13:45:27,820 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 1
+2021-03-24 13:45:38,214 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,redNumber1,redNumber2,redNumber3,redNumber4,redNumber5,redNumber6,blueNumber,dateTime from lottery order by id desc 
+2021-03-24 13:45:38,215 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: 
+2021-03-24 13:45:38,269 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 140
+2021-03-24 13:46:01,264 DEBUG (BaseJdbcLogger.java:159)- ==>  Preparing: select id,redNumber1,redNumber2,redNumber3,redNumber4,redNumber5,redNumber6,blueNumber,dateTime from lottery order by id desc 
+2021-03-24 13:46:01,268 DEBUG (BaseJdbcLogger.java:159)- ==> Parameters: 
+2021-03-24 13:46:01,305 DEBUG (BaseJdbcLogger.java:159)- <==      Total: 140

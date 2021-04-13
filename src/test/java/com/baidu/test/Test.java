@@ -8,8 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /*
  * @Auther fandaoman
@@ -46,6 +49,14 @@ public class Test {
     }
     @org.junit.Test
     public void ddd(){
+        String str1 = "通话";
 
+        String str2 = "重地";
+
+        System.out.println(str1.hashCode() + " " + str2.hashCode());
+        List<User> list = new ArrayList<>();
+        List emptyList = Collections.EMPTY_LIST;
+        list.remove(0);
+        list.stream().filter(s -> s.getId().equals("2")).collect(Collectors.toSet());
     }
 }

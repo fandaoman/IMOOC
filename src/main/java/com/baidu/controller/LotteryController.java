@@ -34,8 +34,7 @@ public class LotteryController {
     public String  findAll(){
         List<Lottery> lotteries = lotteryService.findAll();
         String lotteryJson = JSONUtil.getLotteryJson(lotteries);
-        String news =lotteryJson.substring(1,lotteryJson.length()-1);
-        return news;
+        return lotteryJson.substring(1,lotteryJson.length()-1);
     }
 
     /*

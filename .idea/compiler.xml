@@ -6,11 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="FDM_INOOC" />
-        <module name="User" />
-        <module name="Lottery" />
         <module name="Shiro" />
-        <module name="Eureka" />
+        <module name="User" />
+        <module name="FDM_INOOC" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

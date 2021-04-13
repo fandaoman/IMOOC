@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../Eureka/Eureka.iml" filepath="$PROJECT_DIR$/../Eureka/Eureka.iml" />
       <module fileurl="file://$PROJECT_DIR$/FDM_INOOC.iml" filepath="$PROJECT_DIR$/FDM_INOOC.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../Lottery/Lottery.iml" filepath="$PROJECT_DIR$/../Lottery/Lottery.iml" />
       <module fileurl="file://$PROJECT_DIR$/../Shiro/Shiro.iml" filepath="$PROJECT_DIR$/../Shiro/Shiro.iml" />
     </modules>
   </component>
