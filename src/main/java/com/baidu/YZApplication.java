@@ -11,9 +11,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * */
 @MapperScan("com.baidu.dao")
 @SpringBootApplication
-public class Application {
+public class YZApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class,args);
+        SpringApplication.run(YZApplication.class,args);
     }
 }

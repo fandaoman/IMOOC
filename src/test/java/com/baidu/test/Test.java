@@ -1,6 +1,6 @@
 package com.baidu.test;
 
-import com.baidu.Application;
+import com.baidu.YZApplication;
 import com.baidu.entity.User;
 import com.baidu.service.UserService;
 import org.junit.runner.RunWith;
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
  * @Ver 1.0
  * */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = Application.class)
+@SpringBootTest(classes = YZApplication.class)
 public class Test {
 
     @Autowired
