@@ -23,6 +23,7 @@ public class UserServiceImpl implements UserService {
     //注入dao
     @Autowired
     private UserDao userDao;
+
     @Override
     public List<User> FindAll() {
 

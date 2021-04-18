@@ -1,45 +1,66 @@
 package com.baidu.common;
 
-import java.io.Serializable;
-
 /*
  * @Auther fandaoman
  * @date 2019/11/13 11:21
  * @Ver 1.0
  * */
-public class Result  {
+public class Result<T>  {
     private boolean status;
+    private String code;
 
     private String msg;
 
+    private T dada;
 
-    public Result failure(boolean bb,String msg){
-        Result result = new Result();
-        result.setStatus(bb);
-        result.setMsg(msg);
-        return result;
+    public Result() {}
+
+    private Result(boolean status) {
+        this.status = status;
     }
 
-    public Result success(boolean bb){
-        Result result = new Result();
-        result.setStatus(bb);
-        return result;
-    }
-
-    public Result() {
-    }
-
-    public Result(boolean status, String msg) {
+    private Result(boolean status, String msg) {
         this.status = status;
         this.msg = msg;
     }
 
-    public boolean isStatus() {
-        return status;
+    private Result(String code, String msg) {
+        this.code = code;
+        this.msg = msg;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    private Result(String code, String msg, T data) {
+        this.code = code;
+        this.msg = msg;
+        this.dada = data;
+    }
+
+    public Result failure(boolean status, String msg){
+        return new Result(status, msg);
+    }
+
+    public Result failure(String code, String msg){
+        return new Result(code, msg);
+    }
+
+    public Result<T> success(String code, String msg, T data){
+        return new Result<>(code ,msg ,data);
+    }
+
+    public static Result success(String code, String msg){
+        return new Result(code, msg);
+    }
+    public Result success(boolean status) {
+        return new Result(status);
+    }
+
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getMsg() {
@@ -48,5 +69,21 @@ public class Result  {
 
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    public T getDada() {
+        return dada;
+    }
+
+    public void setDada(T dada) {
+        this.dada = dada;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

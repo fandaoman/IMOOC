@@ -17,7 +17,7 @@ import com.baidu.common.Commons;
  */
 public class SendMessage {
 
-    public SendSmsResponse sendSms(String phone, String code, String templateCode) throws ClientException {
+    public static SendSmsResponse sendSms(String phone, String code, String templateCode) throws ClientException {
         //可自助调整超时时间
         System.setProperty("sun.net.client.defaultConnectTimeout", "10000");
         System.setProperty("sun.net.client.defaultReadTimeout", "10000");
@@ -27,11 +27,11 @@ public class SendMessage {
         IAcsClient acsClient = new DefaultAcsClient(profile);
         //组装请求对象-具体描述见控制台-文档部分内容
         SendSmsRequest request = new SendSmsRequest();
-        //必填:待发送手机号
+        // 必填:待发送手机号
         request.setPhoneNumbers(phone);
-        //必填:短信签名-可在短信控制台中找到
+        // 必填:短信签名-可在短信控制台中找到
         request.setSignName("野猪网");
-        //必填:短信模板-可在短信控制台中找到
+        // 必填:短信模板-可在短信控制台中找到
         request.setTemplateCode(templateCode);//短信模板
         //可选:模板中的变量替换JSON串,如模板内容为"亲爱的${name},您的验证码为${code}"时,此处的值为
         request.setTemplateParam("{\"code\":\""+code+"\"}");

@@ -17,15 +17,20 @@ public class Commons {
     /**
      * accessKeySecret
      */
-    public static final String ACCESS_KEY_SECRET= "O9TTU5xRFVkbyO4d2JZs7BgNGlf7Zp";
+    public static final String ACCESS_KEY_SECRET = "O9TTU5xRFVkbyO4d2JZs7BgNGlf7Zp";
 
     /**
      * product
      */
-    public static final String PRODUCT= "Dysmsapi";
+    public static final String PRODUCT = "Dysmsapi";
 
     /**
      * 产品域名,开发者无需替换
      */
-    public static final String DOMAIN= "dysmsapi.aliyuncs.com";
+    public static final String DOMAIN = "dysmsapi.aliyuncs.com";
+
+    /**
+     * 模板code
+     */
+    public static final String TEMPLATE_CODE = "SMS_205136202";
 }
