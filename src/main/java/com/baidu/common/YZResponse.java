@@ -1,7 +1,6 @@
 package com.baidu.common;
 
 import com.baidu.enumerate.MessageEnum;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
 
@@ -36,15 +35,6 @@ public class YZResponse<T> implements Serializable {
     }
 
 
-    /**
-     * 使之不在json序列化结果当中
-     *
-     * @return boolean boolean
-     */
-    @JsonIgnore
-    public boolean isSuccess() {
-        return this.status == MessageEnum.SUCCESS.getCode();
-    }
 
     /**
      * Gets status.
