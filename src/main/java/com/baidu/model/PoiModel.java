@@ -1,4 +1,4 @@
-package com.baidu.controller;
+package com.baidu.model;
 
 /*
  * @Auther fandaoman

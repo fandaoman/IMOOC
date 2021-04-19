@@ -1,29 +1,23 @@
 package com.baidu.controller;
 
-import com.baidu.common.Response;
-import com.baidu.common.Result;
+import com.baidu.common.YZResponse;
 import com.baidu.entity.User;
 import com.baidu.entity.UserHead;
 import com.baidu.service.UserHeadService;
 import com.baidu.service.UserService;
 import com.baidu.utils.MD5Utils;
+import org.apache.poi.ss.formula.functions.T;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
-import org.apache.tomcat.websocket.WsSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,11 +40,10 @@ public class UserController {
     //用户登录
 
     @RequestMapping(value = "/login")@ResponseBody
-    public Result userLogin(String username, String password,
-                            HttpServletRequest request) {
-        Result result=new Result();
+    public YZResponse userLogin(String username, String password,
+                                   HttpServletRequest request) {
         if("".equals(username) || "".equals(password)){
-           return result.failure(false,"用户名或密码不能为空");
+           return YZResponse.error(500,"用户名或密码不能为空");
         }else{
             User user = userService.findByUsername(username);
             //反向解析MD5密码
@@ -63,46 +56,42 @@ public class UserController {
                     UserHead userhead = userHeadService.findOne(user.getId());
                     //将此人正在使用的头像存储到session中
                     session.setAttribute("userHead",userhead);
-                    return result.success(true);
+                    return YZResponse.success(true);
                 }
-                return result.failure(false,"用户名或密码错误");
+                return YZResponse.error(401,"用户名或密码错误");
             }
         }
-        return result;
+        return YZResponse.success(true);
     }
     @RequestMapping(value = "/shirologin")@ResponseBody
-    public Result userLogin2(String username, String password,
+    public YZResponse userLogin2(String username, String password,
                             HttpServletRequest request) {
-        Result result=new Result();
         //获取主体对象
         Subject subject = SecurityUtils.getSubject();
         try {
             subject.login(new UsernamePasswordToken(username , password));
         } catch (UnsupportedOperationException ex){
-            return result.failure(false,"用户名错误");
+            return YZResponse.error(401,"用户名错误");
         } catch (IncorrectCredentialsException ex){
-            return result.failure(false,"密码错误");
+            return YZResponse.error(401,"密码错误");
         }
 
-        return result;
+        return YZResponse.success(true);
     }
     //用户信息的注册
     @RequestMapping(value = "/register")@ResponseBody
-    public Result userRegister(String username,String password,String email,String realname){
-        User user = new User();
-        Result result = new Result();
+    public YZResponse userRegister(String username,String password,String email,String realname){
         if (username.isEmpty() || password.isEmpty() || email.isEmpty() || realname.isEmpty()){
-            result.failure(false,"注册信息有误");
+             return YZResponse.error(401,"注册信息有误");
         }else{
+            User user = new User();
             user.setUsername(username);
             user.setEmail(email);
             user.setRealname(realname);
             user.setPassword(password);
             userService.add(user);
-            result.success(true);
+            return YZResponse.success(true);
         }
-
-        return result;
     }
 
     //用户信息修改
@@ -120,21 +109,16 @@ public class UserController {
         }else{
             return null;
         }
-
-
     }
 
     @RequestMapping("/findOne")
     public Map<Object,Object> findOne(HttpServletRequest request){
         Map<Object, Object> map = new HashMap<>();
-        Result result = new Result();
         User admin =(User) request.getAttribute("user");
         if (admin==null){
-            result.failure(false,"登录失效，请重新登录");
-            map.put("result",result);
+            map.put("result",new YZResponse<T>(401, "登录失效，请重新登录"));
         }else{
-            User user = userService.findOne(admin.getId());
-
+            userService.findOne(admin.getId());
         }
         return map;
     }

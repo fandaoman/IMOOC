@@ -1,14 +1,12 @@
 package com.baidu.controller;
 
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.baidu.common.Result;
+import com.baidu.common.YZResponse;
 import com.baidu.entity.User;
 import com.baidu.entity.UserHead;
 import com.baidu.service.UserHeadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,7 +21,6 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Map;
 
 /*
  * @Auther fandaoman
@@ -36,14 +33,14 @@ public class UserHeadController {
     @Autowired
     private UserHeadService userHeadService;
 
-    private SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
+    private final SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
+
     @RequestMapping(value = "/upload" ,method = RequestMethod.POST)
     @ResponseBody
-    public Result  add(HttpServletResponse response,HttpServletRequest request,
-                      MultipartFile fileName, String param)throws Exception{
-        Result result = new Result();
+    public YZResponse add(HttpServletResponse response, HttpServletRequest request,
+                          MultipartFile fileName, String param)throws Exception{
         if(fileName==null){
-            return result.failure(false,"头像不能为空");
+            return YZResponse.error(500,"头像不能为空");
         }else{
             JSONObject jsonObject = JSONObject.parseObject(param);
             request.setCharacterEncoding("utf-8");
@@ -70,12 +67,12 @@ public class UserHeadController {
             UserHead userhead = userHeadService.findOne(user1.getId());
             //将此人正在使用的头像存储到session中
             session.setAttribute("userHead",userhead);
-            return result.success(true);
+            return YZResponse.success(true);
         }
     }
 
     //头像的上传
-    public Result inPoto(HttpServletRequest request,
+    public YZResponse inPoto(HttpServletRequest request,
                          HttpServletResponse response) throws IOException, ServletException {
         UserHead userHead = new UserHead();
         //从session取到当前登录用户的id
@@ -122,7 +119,6 @@ public class UserHeadController {
         String[] tempArr1 = header.split(";");
         String[] tempArr2 = tempArr1[2].split("=");
         //获取文件名，兼容各种浏览器的写法
-
         return tempArr2[1].substring(tempArr2[1].lastIndexOf("\\") + 1).replaceAll("\"", "");
 
     }

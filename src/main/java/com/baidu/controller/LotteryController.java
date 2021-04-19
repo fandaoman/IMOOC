@@ -52,13 +52,12 @@ public class LotteryController {
     }
 
     /**
-     * @Introduce 批量插入
-    * */
+     * @param file 批量插入
+     */
     @RequestMapping("/insertExcel")
-    public void InsertExcel(MultipartFile file) throws Exception {
+    public void insertExcel(MultipartFile file) throws Exception {
         //调用utils方法
-        if(file==null){
-        }else{
+        if(file!=null){
             List<Lottery> lotteries = ReadExcelUtils.loadExcel(file.getInputStream());
             for(Lottery lottery:lotteries){
                 lotteryService.save(lottery);
@@ -68,8 +67,9 @@ public class LotteryController {
 
     /**
      * 预测号码
+     *
      * @param num 根据选择的期数做预测
-     * */
+     */
     @RequestMapping("/forcast")
     @ResponseBody
     public List<Integer> getForcase(@Param("num") String num){

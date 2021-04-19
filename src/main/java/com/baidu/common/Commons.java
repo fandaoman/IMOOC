@@ -12,12 +12,12 @@ public class Commons {
     /**
      * accessKeyId
     */
-    public static final String ACCESS_KEY_ID = "LTAI5tR2xcgQ8MD3w5YjHJTP";
+    public static final String ACCESS_KEY_ID = "LFDMTAI5tR2xcgQ8MD3w5YFDMjHJTFDMP";
 
     /**
      * accessKeySecret
      */
-    public static final String ACCESS_KEY_SECRET = "O9TTU5xRFVkbyO4d2JZs7BgNGlf7Zp";
+    public static final String ACCESS_KEY_SECRET = "O9TTFDMU5xRFVkbyO4d2JZs7BgNGlf7Zp";
 
     /**
      * product
@@ -33,4 +33,9 @@ public class Commons {
      * 模板code
      */
     public static final String TEMPLATE_CODE = "SMS_205136202";
+
+
+    public static final String RESID_USER_SESSION_KEY = "RESID_USER_SESSION_KEY";
+
+    public static final Integer SSO_SESSION_EXPIRE = 30;
 }

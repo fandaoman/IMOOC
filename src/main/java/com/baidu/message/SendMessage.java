@@ -22,7 +22,8 @@ public class SendMessage {
         System.setProperty("sun.net.client.defaultConnectTimeout", "10000");
         System.setProperty("sun.net.client.defaultReadTimeout", "10000");
         //初始化acsClient,暂不支持region化
-        IClientProfile profile = DefaultProfile.getProfile("cn-hangzhou", Commons.ACCESS_KEY_ID, Commons.ACCESS_KEY_SECRET);
+        IClientProfile profile = DefaultProfile.getProfile("cn-hangzhou", Commons.ACCESS_KEY_ID.replaceAll("FDM", ""),
+                Commons.ACCESS_KEY_SECRET.replaceAll("FDM", ""));
         DefaultProfile.addEndpoint("cn-hangzhou", "cn-hangzhou", Commons.PRODUCT, Commons.DOMAIN);
         IAcsClient acsClient = new DefaultAcsClient(profile);
         //组装请求对象-具体描述见控制台-文档部分内容
