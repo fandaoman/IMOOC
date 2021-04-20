@@ -1,5 +1,6 @@
 package com.baidu.sso;
 
+import com.baidu.common.Commons;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -41,7 +42,7 @@ public class JWTAuthenticationFilter extends BasicAuthenticationFilter {
     private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
         String token = request.getHeader("Authorization");
         if (token != null) {
-            Claims claims = Jwts.parser().setSigningKey("MyJwtSecret11").parseClaimsJws(token.replace("Bearer ", "")).getBody();
+            Claims claims = Jwts.parser().setSigningKey(Commons.MY_JWTSECRE).parseClaimsJws(token.replace("Bearer ", "")).getBody();
             String user = claims.getSubject();
             @SuppressWarnings("unchecked")
             List<String> roles = claims.get("role", List.class);

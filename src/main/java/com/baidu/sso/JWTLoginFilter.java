@@ -1,6 +1,7 @@
 package com.baidu.sso;
 
 
+import com.baidu.common.Commons;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -51,9 +52,10 @@ public class JWTLoginFilter extends UsernamePasswordAuthenticationFilter {
         claims.put("role", auth.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()));
         String token = Jwts.builder()
                 .setClaims(claims)
-                .setSubject(auth.getName())
-                .setExpiration(new Date(System.currentTimeMillis() + 60 * 60 * 24 * 1000))
-                .signWith(SignatureAlgorithm.HS512, "MyJwtSecret11").compact();
+                .setSubject(auth.getName()) //设置jwt 主题
+                .setExpiration(new Date(System.currentTimeMillis() + 60 * 60 * 24 * 1000)) // 设置 jwt 过期时间
+                .signWith(SignatureAlgorithm.HS512, Commons.MY_JWTSECRE) // 设置密钥与算法
+                .compact(); // 生成token
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json; charset=utf-8");
         String str = "{\"token\":\"" + token + "\"}";
